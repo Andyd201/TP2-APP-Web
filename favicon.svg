@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="258.000000pt" height="259.000000pt" viewBox="0 0 258.000000 259.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<!-- Fond blanc pour tout le favicon -->
+<rect x="0" y="0" width="258" height="259" fill="white"/>
+
+<!-- Cadre blanc au centre (déjà blanc, mais pour la structure) -->
+<rect x="40" y="40" width="178" height="179" fill="white" stroke="none"/>
+
+<!-- Texte "B" en violet -->
+<text x="60" y="160" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="rgba(72, 28, 165, 1)">B</text>
+
+<!-- Texte "L" en violet (plus près du B) -->
+<text x="135" y="160" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="rgba(72, 28, 165, 1)">L</text>
+
+<!-- Bordure violette autour de l'encadré intérieur (sans bords arrondis) -->
+<rect x="40" y="40" width="178" height="179" fill="none" stroke="rgba(72, 28, 165, 1)" stroke-width="16"/>
+
+<!-- Bordure violette jusqu'aux bords extérieurs (sans bords arrondis) -->
+<rect x="4" y="4" width="250" height="251" fill="none" stroke="rgba(72, 28, 165, 1)" stroke-width="8"/>
+</svg>

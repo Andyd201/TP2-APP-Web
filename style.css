@@ -1,0 +1,185 @@
+/*=========================================== NAVBAR ===========================================*/
+
+/* Styles de la barre de navigation verticale */
+.navbar {
+    padding: 2em 1.5em; /* Espacement interne de la barre de navigation */
+    display: flex; /* Utilisation de Flexbox pour la mise en page */
+    flex-direction: column; /* Direction verticale */
+    align-items: flex-start; /* Alignement à gauche */
+    background-color: rgb(16, 29, 62); /* Couleur de fond */
+    width: 18em; /* Largeur fixe */
+    min-height: 100vh; /* Hauteur minimale (hauteur complète de l'écran) */
+    position: fixed; /* Fixe la navbar à gauche */
+    left: 0; /* Position à gauche */
+    top: 0; /* Position en haut */
+}
+
+/* Styles pour la police du navbar de Google Fonts (liens nécessaires dans la page index.html) */
+.noto-sans-0 { 
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 380;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+/* Zone d'en-tête de la navbar (logo + ligne de séparation) avec dégradé */
+.navbar-header {
+    width: calc(100% + 3em); /* Largeur pour compenser les paddings de la navbar */
+    margin: -2em -1.5em 0 -1.5em; /* Marges négatives pour toucher les bords */
+    padding: 2em 1.5em 0 1.5em; /* Espacement sans padding en bas */
+    background: linear-gradient(to bottom, rgba(147, 112, 219, 0.35), rgba(138, 43, 226, 0.1)); /* Dégradé violet lumineux du haut vers le bas */
+
+}
+
+/* Espace au-dessus des liens de navigation */
+.link-space {
+    padding-top: 2em;
+
+}
+
+/* Styles du conteneur du logo et du titre dans la navbar */
+.navbar .logo-container {
+    display: flex; /* Utilisation de Flexbox pour la mise en page */
+    align-items: center; /* Alignement vertical des éléments */
+    gap: 1em; /* Espacement entre le logo et le titre */
+    margin-bottom: 0.8em; /* Pas de marge en bas */
+    padding: 0 0 1.5em 0; /* Padding plus large en bas pour augmenter la hauteur du conteneur */
+    margin-left: 0.4em; /* Décalage vers la droite pour aligner avec les liens de navigation */
+}
+
+/* Styles du logo dans la navbar */
+#logo {
+    width: 3em; /* Largeur du logo */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+    filter: drop-shadow(0 0 6px rgba(147, 112, 219, 0.4)) drop-shadow(0 0 12px rgba(138, 43, 226, 0.2)); /* Effet de luminosité violette autour du logo */
+}
+
+/* Styles du titre (BES Loan) dans la navbar */
+.navbar .title {
+    font-size: 1.6em; /* Taille de la police pour le titre */
+    margin: 0; /* Pas de marge */
+    color: rgb(245, 245, 245); /* Couleur du titre */
+    font-weight: 500; /* Poids de la police pour le titre */
+}
+
+/* Ligne de séparation dans la navbar */
+.navbar-divider {
+    width: calc(100% + 3em); /* Largeur étendue pour couvrir toute la navbar */
+    height: 0.5px; /* Hauteur (épaisseur) */
+    border: none; /* Pas de bordure par défaut */
+    background-color: rgba(245, 245, 245, 0.2); /* couleur de la ligne de séparation */
+    margin: 0 -1.5em; /* Marges négatives pour aller jusqu'aux bords */
+}
+
+
+/* Styles des liens dans la navbar */
+.navbar a {
+    text-decoration: none; /* Suppression du soulignement des liens */
+    color: rgb(179, 181, 183); /* Couleur des liens */
+    font-weight: 450; /* Texte en gras */
+    font-size: 1.1em; /* Taille de la police */
+    transition: background-color 0.3s ease, color 0.08s ease, border-radius 0.3s ease, transform 0.3s ease; /* Transition avec mouvement */
+    padding: 1.2em 1.5em; /* Espacement interne augmenté sur les côtés */
+    width: calc(100% + 3em); /* Largeur étendue pour couvrir plus la navbar */
+    margin-left: -0.8em; /* Marge négative pour étendre vers la gauche */
+    display: block; /* Affichage en bloc */
+    border-radius: 0.3em; /* Coins arrondis par défaut */
+    padding-right: 4.3em; /* Espacement à droite pour les icônes */
+    padding-left: 1em; /* Espacement à gauche pour le texte */
+}
+
+/* Styles des icônes dans les liens de la navbar */
+.navbar .nav-icon {
+    margin-right: 0.8em; /* Espacement entre l'icône et le texte */
+    font-size: 1.2em; /* Taille de l'icône */
+    transition: color 0.3s ease; /* Transition pour le changement de couleur de l'icône */
+}
+
+
+/* Effet au survol des liens */
+.navbar a:hover {
+    background-color: rgb(29, 43, 67); /* Gris foncé au survol */
+    color: rgb(179, 181, 183); /* Couleur des lettres */
+    transform: translateX(3px); /* Déplacement vers la droite au survol */
+}
+
+/* Effet au survol des liens (icône devient bleue) */
+.navbar a:hover .nav-icon {
+    color: rgb(45, 45, 148); /* Couleur bleue pour l'icône au survol */
+}
+
+
+/*=========================================== RESPONSIVE DESIGN (ADAPTATION À TOUS LES ÉCRANS) ===========================================*/
+
+/* Tablettes (écrans moyens) */
+@media screen and (max-width: 1024px) {
+    .navbar {
+        width: 15em; /* largeur du navbar */
+    }
+    
+    .content-area {
+        margin-left: 15em; /* marge à gauche pour aligner avec la navbar */
+    }
+}
+
+/* Petits écrans et tablettes en portrait */
+@media screen and (max-width: 768px) {
+    .navbar {
+        width: 100%; /* Navbar pleine largeur */
+        height: auto; /* Hauteur automatique */
+        min-height: auto; /* Retire la hauteur minimale */
+        position: relative; /* Position relative au lieu de fixe */
+        padding: 1em; /* espacement interne */
+    }
+    
+    .navbar-header {
+        width: 100%; /* Largeur complète */
+        margin: 0; /* Pas de marges */
+        padding: 1em; /* espacement interne */
+    }
+    
+    .navbar .logo-container {
+        margin-left: 0; /* Pas de décalage à gauche */
+        justify-content: center; /* Centrer le logo */
+    }
+    
+    .navbar-divider {
+        width: 100%; /* Largeur complète */
+        margin: 0.5em 0; /* espacement vertical */
+    }
+    
+    .link-space {
+        padding-top: 1em; /* espacement interne au-dessus */
+    }
+    
+    .navbar a {
+        width: 100%; /* Largeur complète */
+        margin-left: 0; /* Pas de marge */
+        text-align: center; /* Texte centré */
+    }
+    
+    .content-area {
+        margin-left: 0; /* Pas de marge gauche */
+    }
+}
+
+/* Mobiles */
+@media screen and (max-width: 480px) {
+    .navbar .title {
+        font-size: 1.3em; /* taille du titre */
+    }
+    
+    #logo {
+        width: 2.5em; /* taille du logo */
+    }
+    
+    .navbar a {
+        font-size: 1em; /* taille des liens */
+        padding: 1em 0.5em; /* espacement interne */
+    }
+}
+
+
+

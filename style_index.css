@@ -1,0 +1,217 @@
+/*=========================================== MAIN ===========================================*/
+
+/* Conteneur principal (navbar + contenu) */
+.main-container {
+    display: flex; /* Flexbox pour mettre navbar à gauche et contenu à droite */
+    flex-direction: column; /* Direction verticale */
+}
+
+/* Zone de contenu à droite */
+.content-area {
+    flex: 1; /* Prend l'espace restant */
+    width: 100%; /* Largeur totale */
+    background-color: rgb(245, 244, 248); /* Couleur de fond du contenu principal */
+    min-height: 100vh; /* Hauteur minimale pour couvrir toute la page */
+}
+
+/* Titre principal de la page */
+.dashboard-title {
+    font-size: 2.1em; /* Taille de la police */
+    font-weight: 700; /* Poids de la police */
+    color: black; /* Couleur du titre */
+    margin: 0; /* Marge autour du titre */
+    padding: 1em 0em; /* Marge autour du titre */
+    padding-top: 1.5em; /* Espacement supplémentaire en haut */
+    margin-left: 11em; /* Décalage vers la droite pour aligner avec la navbar */
+    
+}
+
+/*=========================================== ENCADRÉS PRÊTS (REMBOURSÉS/ACTIFS/EN RETARD) ===========================================*/
+
+/* Conteneur principal des encadrés */
+.info-boxes-container {
+    display: flex; /* Utilisation de Flexbox pour la mise en page */
+    justify-content: center; /* Centrer les encadrés horizontalement */
+    gap: 3em; /* Espacement entre les encadrés */
+    padding: 1em; /* Espacement interne du conteneur */
+    max-width: 1200px; /* Largeur maximale du conteneur */
+    margin: 0 auto; /* Centrer horizontalement */
+    margin-right: 5em; /* Marge à gauche pour aligner avec la navbar */
+    margin-left: 22em; /* Décalage vers la gauche pour aligner avec la navbar */
+}
+
+
+/* Style de chaque encadré */
+.info-box {
+    background-color: white; /* Couleur de fond de l'encadré */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Ombre autour des encadrés */
+    border-radius: 1.5em; /* Bords arrondis de l'encadré */
+    padding: 1.5em; /* Espacement interne de l'encadré */
+    flex: 1; /* Permet à l'encadré de s'adapter à l'espace disponible */
+    min-width: 10em; /* Largeur minimale de l'encadré */
+    max-width: 20em; /* Largeur maximale de l'encadré */
+}
+
+
+/* Titre de l'encadré */
+.info-box-title {
+    font-size: 1em; /* Taille de la police du titre */
+    font-weight: 700; /* Poids de la police du titre */
+    margin-bottom: 0.8em; /* Marge inférieure du titre */
+}
+
+/* Texte de l'encadré */
+.info-box-text {
+    font-size: 0.95em; /* Taille de la police du texte */
+    line-height: 1.5; /* Hauteur de ligne du texte */
+    margin-bottom: 1em; /* Marge inférieure du texte */
+}
+
+/*======================================== ENCADRÉS NOMBRE TOTAUX PRÊTS (PRÊTÉS/REMBOURSÉS) ===========================================*/
+
+/* Conteneur horizontal pour les encadrés */
+.info-boxes-container-horizontal {
+    display: flex; /* Utilisation de Flexbox pour la mise en page */
+    justify-content: center; /* Centrer les encadrés horizontalement */
+    gap: 3em; /* Espacement entre les encadrés */
+    padding: 1em; /* Espacement interne du conteneur */
+    max-width: 1200px; /* Largeur maximale du conteneur */
+    margin: 0 auto; /* Centrer horizontalement */
+    margin-right: 8em; /* Marge à droite */
+    margin-left: 24em; /* Décalage vers la gauche pour aligner avec la navbar */
+    margin-top: 3em; /* Espacement en haut entre les sections */
+}
+
+/*======================================== PASTILLE NOTIFICATION NOMBRE PRÊTS EN RETARD ===========================================*/
+
+/* Conteneur de la pastille de notification */
+.notification-container {
+    display: flex; /* Utilisation de Flexbox */
+    justify-content: center; /* Centrer horizontalement */
+    padding: 4em; /* Espacement interne */
+    margin-left: 22em; /* Alignement avec les autres encadrés */
+    margin-right: 6em; /* Alignement avec les autres encadrés */
+}
+
+/* Pastille de notification */
+.notification-badge {
+    display: flex; /* Flexbox pour aligner icône et texte */
+    align-items: center; /* Alignement vertical centré */
+    gap: 1em; /* Espacement entre l'icône et le texte */
+    background-color: rgb(207, 22, 40); /* Rouge pour l'alerte */
+    color: white; /* Texte blanc */
+    padding: 1em 2em; /* Espacement interne */
+    border-radius: 2em; /* Bords très arrondis pour effet pastille */
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3); /* Ombre rouge */
+    font-weight: 600; /* Texte en gras */
+}
+
+/* Icône d'exclamation dans la pastille */
+.notification-icon {
+    font-size: 1.5em; /* Taille de l'icône */
+}
+
+/* Contenu textuel de la notification */
+.notification-content {
+    display: flex; /* Flexbox pour le nombre et le texte */
+    align-items: baseline; /* Alignement des lignes de base */
+    gap: 0.5em; /* Espacement entre le nombre et le texte */
+}
+
+/* Nombre de prêts en retard */
+.notification-number {
+    font-size: 1em; /* Taille pour le nombre */
+    font-weight: 700; /* gras */
+}
+
+/* Texte "prêts en retard" */
+.notification-text {
+    font-size: 1em; /* Taille texte*/
+}
+
+/*=========================================== RESPONSIVE DESIGN (ADAPTATION À TOUS LES ÉCRANS) ===========================================*/
+
+/* Tablettes (écrans moyens) */
+@media screen and (max-width: 1024px) {
+    .dashboard-title {
+        margin-left: 5em; /* décalage à gauche */
+        font-size: 1.8em; /* taille du titre */
+    }
+    
+    .info-boxes-container {
+        margin-left: 5em; /* décalage à gauche */
+        margin-right: 2em; /* décalage à droite */
+        gap: 2em; /* Espacement entre encadrés */
+    }
+    
+    .info-boxes-container-horizontal {
+        margin-left: 5em; /* décalage à gauche */
+        margin-right: 2em; /* décalage à droite */
+    }
+    
+    .notification-container {
+        margin-left: 5em; /* décalage à gauche */
+        margin-right: 2em; /* décalage à droite */
+    }
+}
+
+/* Petits écrans et tablettes en portrait */
+@media screen and (max-width: 768px) {
+    .dashboard-title {
+        margin-left: 0; /* Pas de décalage à gauche */
+        text-align: center; /* Centrer le titre */
+        font-size: 1.6em; /* taille du titre */
+        padding: 1em; /* espacement interne */
+    }
+    
+    .info-boxes-container,
+    .info-boxes-container-horizontal {
+        flex-direction: column; /* Disposition verticale */
+        align-items: center; /* Centrer les encadrés */
+        margin-left: 0; /* Pas de décalage à gauche */
+        margin-right: 0; /* Pas de décalage à droite */
+        gap: 2em; /* Espacement entre encadrés */
+    }
+    
+    .info-box {
+        max-width: 90%; /* Largeur maximale */
+        width: 100%; /* Pleine largeur */
+    }
+    
+    .notification-container {
+        margin-left: 0; /* Pas de décalage à gauche */
+        margin-right: 0; /* Pas de décalage à droite */
+        padding: 2em 1em; /* espacement interne */
+    }
+    
+    .notification-badge {
+        flex-direction: column; /* Disposition verticale */
+        text-align: center; /* Texte centré */
+        padding: 1.5em; /* espacement interne */
+    }
+}
+
+/* Mobiles */
+@media screen and (max-width: 480px) {
+    .dashboard-title {
+        font-size: 1.4em; /* taille du titre */
+    }
+    
+    .info-box {
+        padding: 1em; /* espacement interne */
+        max-width: 95%; /* Largeur maximale */
+    }
+    
+    .info-box-title {
+        font-size: 0.9em; /* taille du titre */
+    }
+    
+    .notification-badge {
+        padding: 1em; /* espacement interne */
+        font-size: 0.9em; /* taille du texte */
+    }
+    
+    .notification-icon {
+        font-size: 1.2em; /* taille de l'icône */
+    }
+}
