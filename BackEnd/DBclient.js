@@ -1,11 +1,8 @@
-const { table } = require('console');
-const { connect } = require('http2')
-const knew = require('knex')
-const { Client } = require('undici-types')
+const knex = require('knex')
 
 // creation de la base de donne
 const db = knex({
-    Client: 'sqlite3',
+    client: 'sqlite3',
     connection: {
         filename: "./BESloan.sqlite3",
     },
@@ -14,13 +11,13 @@ const db = knex({
 
 
 async function createTable() {
-    const exists = await db.shema.hasTable("Clients");
+    const exists = await db.schema.hasTable("Clients");
     if(!exists){
-        await db.shema.createTable("Clients", (table)=>{
+        await db.schema.createTable("Clients", (table)=>{
             table.increments("id").primary();
             table.string("nom").notNullable();
             table.string("Prenom").notNullable();
-            table.number("Telephone").notNullable();
+            table.integer("Telephone").notNullable();
             table.string("email").notNullable();
             table.string("adresse").notNullable();
         });

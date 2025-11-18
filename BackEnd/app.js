@@ -1,11 +1,9 @@
-const express = require('express')
+const express = require('express');
 const path = require('path')
 const port = 3000
 
 
 const {db, createTable} = require('./DBclient')
-const { stringify } = require('querystring')
-const { error } = require('console')
 
 
 const app = express()
@@ -21,10 +19,10 @@ app.get('/', (req, res) =>{
 
 app.post('/addClients', async (req, res)=>{
     try{
-        const {nom, prenom, telephone, email, addresse} = req.body;
+        const {nom, prenom, telephone, email, adresse} = req.body;
 
-        if(!nom, !prenom, !telephone, !email, !addresse){
-            return res.status(400).json({error: "champ 'nom', 'prenom', 'telephone', 'email', !addresse obligation"})
+        if(!nom || !prenom || !telephone || !email || !adresse){
+            return res.status(400).json({error: "champ 'nom', 'prenom', 'telephone', 'email', 'adresse' obligation"})
         }
 
         const client = {
@@ -32,22 +30,49 @@ app.post('/addClients', async (req, res)=>{
             prenom: prenom,
             telephone: telephone,
             email: email,
-            addresse: addresse
+            adresse: adresse
         }
         await db("Clients").insert(client);
-        res.status(201).json(product);
+        res.status(201).json(client);
     }catch(err){
         console.error("Erreur /addClients", err);
       res.status(500).json({error: "Erreur serveur.." })
     }
 });
+app.get('/allClients', async (req, res)=>{
+   try{
+
+    const products = await db("Clients").select("*").orderBy("id", "desc");
+       res.status(200).json(products)
+   }catch(err){
+       console.error("Erreur /allClients", err);
+      res.status(500).json({error: "Erreur serveur.." })
+   }
+})
+
+app.delete('/deleteClient/:id', async (req, res) =>{
+   try{
+      const {id} = req.params;
+      const deleted = await db("Clients").where('id', id).del();
+      if (deleted == 0){
+      return res.status(404).json({error: "Client introuvable"})
+      }
+      res.status(200).json({message: "Client supprimé", deleted: deleted})
+   }catch(err){
+       console.error("Erreur /deleteClient", err);
+      res.status(500).json({error: "Erreur serveur.."})
+   }
+   
+})
+
+
 
 
 createTable()
 .then(()=>{
 
    app.listen(3000, ()=>{
-    console.log(`serveur en cours d'execution sur http://localhost:${port}`)
+    console.log(`Express server listening at http://localhost:${port}`)
 });
 
 })
@@ -55,3 +80,6 @@ createTable()
    console.error("Erreur au demarrage du schema", err);
    process.exit(1);
 })
+
+
+

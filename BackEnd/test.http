@@ -1,0 +1,8 @@
+curl -X POST http://localhost:3000/addClients \
+     -H "Content-Type: application/json" \
+     -d '{"prenom": "John", "nom": "Doe", "telephone": "41421121", "email": "asndy@sam.com", "adresse": "123 Main St"}'
+
+curl http://localhost:3000/allClients
+
+
+curl DELETE http://localhost:3000/deleteClient/1
