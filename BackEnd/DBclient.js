@@ -14,7 +14,7 @@ const db = knex({
 
 
 async function createTable() {
-    const exists = await db.shema.hasTable("products");
+    const exists = await db.shema.hasTable("Clients");
     if(!exists){
         await db.shema.createTable("Clients", (table)=>{
             table.increments("id").primary();
