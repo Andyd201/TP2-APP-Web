@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- accessibilité qui permet aux lecteurs d'écran de comprendre la langue de la page -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- rend la page responsive sur les appareils mobiles (adaptation aux différentes tailles d'écran) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> <!-- lien CSS Bulma  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome (icônes) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <!-- Google Fonts style de police Noto Sans -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_index.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"> <!-- icône de l'onglet du navigateur --> 
+    <title>BES Loan</title>
+</head>
+<body>
+    <header>
+        <!-- Navbar verticale à gauche -->
+        <nav class="navbar noto-sans-0" role="navigation" aria-label="main navigation">
+            <!-- Zone avec dégradé (logo + séparateur) -->
+            <div class="navbar-header">
+                <!-- Logo et nom de l'entreprise -->
+                <div class="logo-container">
+                    <img src="logo_BES_Loan.svg" alt="Logo BES Loan" id="logo">
+                    <h1 class="title">BES<br><span class="has-text-link">Loan</span></h1>
+                </div>
+                <!-- Ligne de séparation entre le logo et les liens de navigation -->
+                <hr class="navbar-divider">
+            </div>
+            <!-- Liens de navigation -->
+            <div class="link-space">
+                <!-- aria-hidden="true" pour indiquer que les icônes sont décoratives et ne doivent pas être lues par les lecteurs d'écran -->
+                <a href="../TP2-APP-Web/index.html" class="lien navbar-item"><i class="fa-solid fa-gauge-simple nav-icon" aria-hidden="true"></i>Dashboard</a>
+                <a href="../TP2-APP-Web/Clients.html" class="lien navbar-item"><i class="fa-solid fa-user-group nav-icon" aria-hidden="true"></i>Clients</a>
+                <a href="" class="lien navbar-item"><i class="fa-solid fa-wallet nav-icon" aria-hidden="true"></i>Prêts</a>
+                <a href="" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
+            </div>
+        </nav>
+    </header>
+
+
+
+    
