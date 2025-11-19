@@ -1,0 +1,51 @@
+/*=============================== MAIN ========================================*/
+/* Conteneur principal (navbar + contenu) */
+.main-container {
+    display: flex; /* Flexbox pour mettre navbar à gauche et contenu à droite */
+    flex-direction: column; /* Direction verticale */
+    background-color: rgb(10, 18, 38); /* Couleur de fond du conteneur principal */
+}
+
+/* Zone de contenu à droite */
+.content-area {
+    flex: 1; /* Prend l'espace restant */
+    width: 100%; /* Largeur totale */
+    background-color: rgb(245, 244, 248); /* Couleur de fond du contenu principal */
+    min-height: 100vh; /* Hauteur minimale pour couvrir toute la page */
+}
+
+/* Titre principal de la page */
+.prets-title-container {
+    display: flex; /* Flexbox pour aligner le titre et la notification */
+    justify-content: space-between; /* Espace entre le titre et la notification */
+    align-items: center; /* Alignement vertical */
+    padding: 1em 0em; /* Espacement vertical */
+    padding-top: 1.5em; /* Espacement supérieur */
+    margin-left: 11em; /* Marge gauche */
+    margin-right: 4em; /* Marge droite */
+}
+
+/* Titre principal */
+.prets-title {
+    font-size: 2.1em; /* Taille de la police */
+    font-weight: 700; /* Gras */
+    color: white; /* Couleur du texte */
+    margin: 0; /* Marge */
+    margin-left: 5.5em; /* Marge gauche */
+}
+
+/*=============================================== FORMULAIRE AJOUTER PRÊT ===================================*/
+/* Conteneur du formulaire d'ajout de prêt */
+.prets-content-container {
+    background-color: white; /* Couleur de fond blanche */
+    border-radius: 8px; /* Bords arrondis */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    padding: 2em; /* Espacement interne */
+    margin: 2em 5em 4em 23em; /* Marges externes */
+}
+
+
+
+
+
+

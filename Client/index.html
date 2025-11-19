@@ -29,11 +29,18 @@
             <!-- Liens de navigation -->
             <div class="link-space">
                 <!-- aria-hidden="true" pour indiquer que les icônes sont décoratives et ne doivent pas être lues par les lecteurs d'écran -->
-                <a href="../TP2-APP-Web/index.html" class="lien navbar-item"><i class="fa-solid fa-gauge-simple nav-icon" aria-hidden="true"></i>Dashboard</a>
-                <a href="../TP2-APP-Web/Clients.html" class="lien navbar-item"><i class="fa-solid fa-user-group nav-icon" aria-hidden="true"></i>Clients</a>
-                <a href="" class="lien navbar-item"><i class="fa-solid fa-wallet nav-icon" aria-hidden="true"></i>Prêts</a>
-                <a href="" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
+                <a href="index.html" class="lien navbar-item is-active"><i class="fa-solid fa-gauge-simple nav-icon" aria-hidden="true"></i>Dashboard</a> <!-- is-active pour indiquer la page active -->
+                <a href="Clients.html" class="lien navbar-item"><i class="fa-solid fa-user-group nav-icon" aria-hidden="true"></i>Clients</a>
+                <a href="prets.html" class="lien navbar-item"><i class="fa-solid fa-wallet nav-icon" aria-hidden="true"></i>Prêts</a>
+                <a href="paiements.html" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
             </div>
+<!--------------------------------------- pastille rafraichissement --------------------------------------------------->
+            <button class="pastille-rafraichissement has-text-link noto-sans-0" onclick="location.reload()">
+                <i class="fa-solid fa-arrows-rotate arrow-icon" aria-hidden="true"></i>
+                <div class="pastille-rafraichissement-contenu">
+                    <span class="pastille-texte">Actualiser</span>
+                </div>
+            </button>
         </nav>
     </header>
 
@@ -210,7 +217,7 @@
                                 <td>
                                     <!--------------------- troisième client en retard ------------------------------------------>
                                     <div class="client-info">
-                                        <div class="client-avatar">AB</div> <!-- initiales de l'avatar -->
+                                        <div class="client-avatar">MAF</div> <!-- initiales de l'avatar -->
                                         <div class="client-details">
                                             <span class="client-name">Marilou Aiko Fukuyama</span>
                                             <span class="client-phone">514-645-6789</span>

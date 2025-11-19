@@ -110,6 +110,60 @@
     color: rgb(45, 45, 148); /* Couleur bleue pour l'icône au survol */
 }
 
+/* Style pour la page active */
+.navbar a.is-active {
+    background: linear-gradient(135deg, rgba(29, 43, 67, 0.95), rgba(45, 60, 90, 0.7), rgba(60, 80, 120, 0.4)) !important; /* Dégradé bleu pâle pour la page active */
+    box-shadow: 0 8px 12px rgba(45, 60, 90, 0.3) !important; /* Ombre pour la page active */
+    color: white !important; /* Texte blanc */
+    transform: translateX(3px); /* Léger déplacement pour indiquer l'état actif */
+}
+
+/* Icône blanche pour la page active */
+.navbar a.is-active .nav-icon {
+    color: white !important; /* Icône blanche */
+}
+
+
+/* Pastille de rafraîchissement */
+.pastille-rafraichissement {
+    display: flex; /* Utilisation de flexbox */
+    align-items: center; /* Alignement vertical */
+    gap: 1em; /* Espacement entre les éléments */
+    background-color: white; /* Couleur de fond */
+    padding: 0.3em 1em; /* Espacement interne */
+    border-radius: 2em;     /* Bordure arrondie */
+    font-weight: 600; /* Poids de la police */
+    cursor: pointer; /* Curseur pointeur */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
+    margin-right: 1em; /* Marge droite */
+    margin-top: 3em; /* Marge en haut */
+    border: 2px solid white;
+}
+
+/* Effet au survol de la pastille rafraîchissement */
+.pastille-rafraichissement:hover {
+    background-color:rgb(179, 181, 183); /* Couleur du texte au survol */
+    border-color: rgb(179, 181, 183);
+}
+
+/* Icône du refresh dans la pastille */
+.arrow-icon {
+    font-size: 1.2em; /* Taille de l'icône */
+}
+
+/* Contenu textuel de la pastille rafraîchissement */
+.pastille-rafraichissement-contenu {
+    display: flex; /* Utilisation de flexbox */
+    align-items: baseline; /* Alignement sur la ligne de base */
+    gap: 0.4em; /* Espacement entre les éléments */
+}
+
+/* Texte "Actualiser" */
+.pastille-texte {
+    font-size: 0.9em; /* Taille du texte */
+}
+
+
 
 /*=========================================== RESPONSIVE DESIGN (ADAPTATION À TOUS LES ÉCRANS) ===========================================*/
 

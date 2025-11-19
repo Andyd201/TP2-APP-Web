@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- accessibilité qui permet aux lecteurs d'écran de comprendre la langue de la page -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- rend la page responsive sur les appareils mobiles (adaptation aux différentes tailles d'écran) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> <!-- lien CSS Bulma  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome (icônes) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <!-- Google Fonts style de police Noto Sans -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_prets.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"> <!-- icône de l'onglet du navigateur --> 
+    <title>BES Loan</title>
+</head>
+<body>
+<!------------------------------------ HEADER/NAVBAR --------------------------------------------------->
+    <header>
+        <!-- Navbar verticale à gauche -->
+        <nav class="navbar noto-sans-0" role="navigation" aria-label="main navigation">
+            <!-- Zone avec dégradé (logo + séparateur) -->
+            <div class="navbar-header">
+                <!-- Logo et nom de l'entreprise -->
+                <div class="logo-container">
+                    <img src="logo_BES_Loan.svg" alt="Logo BES Loan" id="logo">
+                    <h1 class="title">BES<br><span class="has-text-link">Loan</span></h1>
+                </div>
+                <!-- Ligne de séparation entre le logo et les liens de navigation -->
+                <hr class="navbar-divider">
+            </div>
+            <!-- Liens de navigation -->
+            <div class="link-space">
+                <!-- aria-hidden="true" pour indiquer que les icônes sont décoratives et ne doivent pas être lues par les lecteurs d'écran -->
+                <a href="index.html" class="lien navbar-item"><i class="fa-solid fa-gauge-simple nav-icon" aria-hidden="true"></i>Dashboard</a>
+                <a href="Clients.html" class="lien navbar-item"><i class="fa-solid fa-user-group nav-icon" aria-hidden="true"></i>Clients</a>
+                <a href="prets.html" class="lien navbar-item is-active"><i class="fa-solid fa-wallet nav-icon" aria-hidden="true"></i>Prêts</a> <!-- is-active pour indiquer la page active -->
+                <a href="paiements.html" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
+            </div>
+
+            <!--------------------------------------- pastille rafraichissement --------------------------------------------------->
+            <button class="pastille-rafraichissement has-text-link noto-sans-0" onclick="location.reload()"><!-- onclick="location.reload()" permet de rafraîchir la page -->
+                <i class="fa-solid fa-arrows-rotate arrow-icon" aria-hidden="true"></i>
+                <div class="pastille-rafraichissement-contenu">
+                    <span class="pastille-texte">Actualiser</span>
+                </div>
+            </button>
+        </nav>
+    </header>
+
+<!------------------------------------ MAIN CONTENT --------------------------------------------------->
+    <main class="content-area">
+        <!-- Conteneur principal avec navbar à gauche et contenu à droite -->
+        <div class="main-container">
+            <div class="prets-title-container noto-sans-0 has-text-link">
+                <h1 class="prets-title">Gestion des Prêts</h1>
+            </div>
+
+<!------------------------------------ formulaire --------------------------------------------------->
+<!-- impportant de mettre colomns dans une div a part après form, puis mettre chaque field dans une column avec le is-half -->   
+            <div class="prets-content-container noto-sans-0"> 
+                <!--formulaire bulma -->
+                <form>
+                    <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
+                        <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
+                            <label class="label">Montant</label> <!-- label pour le champ montant -->
+                            <div class="control"> <!-- conteneur de contrôle pour le champ montant -->
+                                <input class="input" type="number" placeholder="Montant du prêt"> <!-- input de type number pour le montant du prêt -->
+                            </div>
+                        </div>
+                        <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
+                            <label class="label">Taux Annuel (%)</label> <!-- label pour le champ taux annuel -->
+                            <div class="control"> <!-- conteneur de contrôle pour le champ taux annuel -->
+                                <input class="input" type="number" step="0.01" placeholder="Taux annuel"> <!-- input de type number pour le taux annuel -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
+                        <div class="field column is-half is-6">
+                            <label class="label">Durée (mois)</label> <!-- label pour le champ durée -->
+                            <div class="control"> <!-- conteneur de contrôle pour le champ durée -->
+                                <input class="input" type="number" placeholder="Durée en mois"> <!-- input de type number pour la durée -->
+                            </div>
+                        </div>
+
+                        <div class="field column is-half is-6">
+                            <label class="label">Date de Début</label> <!-- label pour le champ date de début -->
+                            <div class="control"> <!-- conteneur de contrôle pour le champ date de début -->
+                                <input class="input" type="date"> <!-- input de type date pour la date de début -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
+                        <div class="field column">
+                            <label class="label">Client</label>
+                            <div class="control">
+                                <div class="select client-space">
+                                    <select>
+                                        <option>Sélectionner un client</option>
+                                        <!-- ajout des clients via javascript -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
+                        <div class="field column">
+                            <div class="control">
+                                <button class="button is-link">Ajouter Prêt</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+</body>
+</html>
