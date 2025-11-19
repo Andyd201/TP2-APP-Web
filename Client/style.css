@@ -183,3 +183,10 @@
 
 
 
+.title {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 500;
+    color: rgb(16, 29, 62);
+    margin-bottom: 0.5em;
+    margin: 0 0 220px;
+}

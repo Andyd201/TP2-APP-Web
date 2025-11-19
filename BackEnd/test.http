@@ -5,4 +5,4 @@ curl -X POST http://localhost:3000/addClients \
 curl http://localhost:3000/allClients
 
 
-curl DELETE http://localhost:3000/deleteClient/1
+curl -X DELETE http://localhost:3000/deleteClient/1
