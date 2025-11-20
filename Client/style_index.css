@@ -69,7 +69,6 @@
 
 /* Effet au survol de l'encadré */
 .info-box:hover {
-    transform: translateY(-3px); /* Légère translation vers le haut */
     background-color: rgb(29, 43, 67); /* Couleur de fond au survol */
 }
 
@@ -180,7 +179,7 @@
     margin: 0 auto; /* Centrer horizontalement */
     margin-right: 5em; /* Marge droite */
     margin-left: 22em; /* Marge gauche */
-    margin-top: 2em; /* Marge supérieure */
+    margin-top: -0.1em; /* Marge supérieure */
 }
 
 /* Encadrés larges pour les montants */
@@ -208,7 +207,6 @@
 
 /* Effet au survol des encadrés larges */
 .info-box-large:hover {
-    transform: translateY(-3px); /* Légère translation vers le haut */
     background-color: rgb(29, 43, 67); /* Couleur de fond au survol */
 }
 
@@ -301,6 +299,7 @@
     cursor: pointer; /* Curseur pointeur */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
     margin-right: 1em; /* Marge droite */
+    border: 2px solid rgb(179, 22, 38); /* Bordure rouge */
 }
 
 /* Effet au survol de la pastille rouge */
@@ -311,6 +310,11 @@
 /* Icône d'exclamation dans la pastille */
 .exclamation-icon {
     font-size: 1.2em; /* Taille de l'icône */
+    color: white; /* Couleur blanche de l'icône */
+}
+
+.pastille-rouge:hover .exclamation-icon{
+    color: #7a7a7a; /* Couleur de l'icône au survol */
 }
 
 /* Contenu textuel de la notification */
@@ -328,26 +332,28 @@
 
 /* Texte "prêts en retard" */
 .pastille-texte {
-    font-size: 0.9em; /* Taille du texte */
+    font-size: 1.1em; /* Taille du texte */
 }
 
 
 /*=========================================== TABLEAU DES PRÊTS ===========================================*/
 
 /* titre du tableau */
-.section-title {
+.table-title {
     color: white; /* Couleur du texte */
     font-size: 1.5em; /* Taille de la police */
     margin-bottom: 1em; /* Marge inférieure */
+    padding: 1em;
 }
 
 /* Conteneur de la section du tableau */
 .table-section {
     padding: 0em; /* Espacement interne */
     max-width: 1200px; /* Largeur maximale */
-    margin: 2em auto; /* Marges */
+    margin: 3em auto; /* Marges */
     margin-left: 22em; /* Marge gauche */
     margin-right: 5em; /* Marge droite */
+    margin-top: 1em;
 }
 
 /* Conteneur du tableau */

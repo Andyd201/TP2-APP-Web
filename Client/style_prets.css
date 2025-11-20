@@ -37,15 +37,112 @@
 /*=============================================== FORMULAIRE AJOUTER PRÊT ===================================*/
 /* Conteneur du formulaire d'ajout de prêt */
 .prets-content-container {
+    position: relative; /* Nécessaire pour le positionnement de la ligne colorée */
     background-color: white; /* Couleur de fond blanche */
     border-radius: 8px; /* Bords arrondis */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    background-color: rgba(147, 112, 219, 0.4); /* Couleur de fond violette claire */
     padding: 2em; /* Espacement interne */
     margin: 2em 5em 4em 23em; /* Marges externes */
+    overflow: hidden; /* Cache la ligne qui dépasse */
+}
+
+/* ligne colorée sur le dessus du conteneur du formulaire */
+.prets-content-container::before{
+    content: ''; /* Nécessaire pour afficher la ligne colorée */
+    position: absolute; /* Position absolue pour le placer en haut */
+    top: 0; /* Position en haut */
+    left: 0; /* Position à gauche */
+    width: 100%; /* Largeur totale */
+    height: 4px; /* Hauteur de la ligne */
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: height 0.3s ease; /* Transition pour l'animation */
+    z-index: 1; /* Place la ligne au-dessus du fond */
 }
 
 
+.section-title {
+    margin-bottom: -10em; /* Espace en dessous du titre de section */
+}
 
+.titre-formulaire {
+    color: white; /* Couleur du texte */
+    font-size: 1.5em;
+    font-weight: 350;
+}
 
+form .field label {
+    color: rgb(179, 181, 183); /* Couleur des labels */
+    font-weight: 600; /* Gras */
+}
 
+form .input, form .select select {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent pour les champs */
+    border: 1px solid rgba(200, 200, 200, 0.5); /* Bordure grise claire */
+    box-shadow: none; /* Pas d'ombre */
+    color: rgb(50, 50, 50); /* Couleur du texte */
+    font-weight: 500; /* Poids de la police */
+}
+
+/*============================================ TABLEAU LISTE DES PRÊTS ===================================*/
+
+/* Conteneur du tableau des prêts */
+.prets-list-container {
+    position: relative; /* Nécessaire pour le positionnement de la ligne colorée */
+    border-radius: 8px; /* Bords arrondis */
+    background-color: rgba(147, 112, 219, 0.4); /* Couleur de fond violette claire */
+    padding: 2em; /* Espacement interne */
+    margin: 2em 5em 4em 23em; /* Marges externes */
+    overflow: hidden; /* Cache la ligne qui dépasse */
+}
+
+/* ligne colorée sur le dessus du conteneur du formulaire */
+.prets-list-container::before{
+    content: ''; /* Nécessaire pour afficher la ligne colorée */
+    position: absolute; /* Position absolue pour le placer en haut */
+    top: 0; /* Position en haut */
+    left: 0; /* Position à gauche */
+    width: 100%; /* Largeur totale */
+    height: 4px; /* Hauteur de la ligne */
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: height 0.3s ease; /* Transition pour l'animation */
+    z-index: 1; /* Place la ligne au-dessus du fond */
+}
+
+/* Styles du tableau des prêts */
+#pretsTable {
+    width: 100%; /* Largeur totale */
+    border-collapse: collapse; /* Fusion des bordures */
+    background-color: rgba(147, 112, 219, 0.4); /* Fond blanc semi-transparent pour le tableau */
+    border-radius: 8px; /* Bords arrondis */
+    overflow: hidden; /* Cache les débordements */
+}
+
+/* Styles des en-têtes du tableau */
+.titre-liste-prets {
+    font-size: 1.5em; /* Taille de la police */
+    font-weight: 350; /* Gras */
+    color: white; /* Couleur du texte */
+    margin-bottom: 9.8em; /* Espace en dessous du titre */
+}
+
+/* Styles des boutons de pagination */
+#prevPage, #nextPage {
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 0.5em 1em; /* Espacement interne */
+    margin: 0.5em; /* Marge */
+    border-radius: 4px; /* Bords arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    font-weight: 500; /* Poids de la police */
+}
+
+/* Styles de l'input de recherche */
+#searchInput {
+    border: 1px solid rgba(200, 200, 200, 0.5); /* Bordure grise claire */
+    box-shadow: none; /* Pas d'ombre */
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+    color: rgb(50, 50, 50); /* Couleur du texte */
+    font-weight: 500; /* Poids de la police */
+    
+}
 

@@ -151,6 +151,8 @@
     font-size: 1.2em; /* Taille de l'icône */
 }
 
+
+
 /* Contenu textuel de la pastille rafraîchissement */
 .pastille-rafraichissement-contenu {
     display: flex; /* Utilisation de flexbox */

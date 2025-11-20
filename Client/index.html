@@ -35,14 +35,15 @@
                 <a href="paiements.html" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
             </div>
 <!--------------------------------------- pastille rafraichissement --------------------------------------------------->
-            <button class="pastille-rafraichissement has-text-link noto-sans-0" onclick="location.reload()">
-                <i class="fa-solid fa-arrows-rotate arrow-icon" aria-hidden="true"></i>
+            <button class="pastille-rafraichissement has-text-link noto-sans-0">
+                <i class="fa-solid fa-arrows-rotate arrow-icon is-link" aria-hidden="true"></i>
                 <div class="pastille-rafraichissement-contenu">
                     <span class="pastille-texte">Actualiser</span>
                 </div>
             </button>
         </nav>
     </header>
+
 
 
 <!------------------------------------ MAIN CONTENT --------------------------------------------------->
@@ -53,13 +54,14 @@
             <div class="dashboard-title-container noto-sans-0">
                 <h1 class="dashboard-title">Dashboard</h1>
 <!--------------------------------------- PASTILLE ROUGE --------------------------------------------------->
-                <div class="pastille-rouge">
+                <button class="pastille-rouge">
                     <i class="fa-solid fa-circle-exclamation exclamation-icon" aria-hidden="true"></i>
                     <div class="pastille-contenu">
+                        <!------ contenu javascript (données pour tester) ----->
                         <span class="pastille-nombre">3</span>
                         <span class="pastille-texte">prêts en retard</span>
                     </div>
-                </div>
+                </button>
             </div>
 <!------------------------------------ ENCADRÉS PRÊTS ACTIFS/REMBOURSÉS/EN RETARD --------------------------------------------------->
             <div class="info-boxes-container noto-sans-0">
@@ -142,10 +144,12 @@
 
 <!-------------------------------------- TABLEAU DERNIERS PRÊTS --------------------------------------------------->
             <div class="table-section noto-sans-0">
-                <h3 class="section-title">Liste des clients en retard</h3>
                 <div class="table-container">
                     <!------------------- tableau des clients en retard ------------------------------------------>
                     <table class="loans-table">
+                        <div class="section-table-title">
+                            <h3 class="table-title">Liste des clients en retard</h3>
+                        </div>
                         <thead>
                             <tr>
                                 <th>Client</th>
@@ -159,6 +163,7 @@
                         <tbody>
                             <tr>
                                 <td>
+                                    <!-- à insérer en javascript (données pour tester) -->
                                     <!--------------------- premier client en retard ------------------------------------------>
                                     <div class="client-info">
                                         <div class="client-avatar">LJ</div> <!--avatar avec initiales -->
@@ -228,7 +233,6 @@
                                 <td class="date">05/11/2025</td>
                                 <td>
                                     <span class="nb-jours">13 jours</span>
-                                    </span>
                                 </td>
                                 <td><span class="status-badge status-moderate">Modéré</span></td> <!-- badge de statut avec couleur modérée -->
                                 <td>
@@ -249,7 +253,9 @@
 
 
 
+
 <!------------------------------------ JAVASCRIPT --------------------------------------------------->
-    
+<script src="script.js"></script>
+<script src="script_index.js"></script>
 </body>
 </html>

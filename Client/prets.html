@@ -49,26 +49,29 @@
     <main class="content-area">
         <!-- Conteneur principal avec navbar à gauche et contenu à droite -->
         <div class="main-container">
-            <div class="prets-title-container noto-sans-0 has-text-link">
+            <div class="prets-title-container noto-sans-0">
                 <h1 class="prets-title">Gestion des Prêts</h1>
             </div>
 
 <!------------------------------------ formulaire --------------------------------------------------->
 <!-- impportant de mettre colomns dans une div a part après form, puis mettre chaque field dans une column avec le is-half -->   
             <div class="prets-content-container noto-sans-0"> 
+                <div class="section-title">
+                    <h3 class="title titre-formulaire">Ajouter un nouveau prêt</h3>
+                </div>
                 <!--formulaire bulma -->
                 <form>
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
                             <label class="label">Montant</label> <!-- label pour le champ montant -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ montant -->
-                                <input class="input" type="number" placeholder="Montant du prêt"> <!-- input de type number pour le montant du prêt -->
+                                <input class="input" type="number" placeholder="Montant du prêt" required> <!-- input de type number pour le montant du prêt -->
                             </div>
                         </div>
                         <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
                             <label class="label">Taux Annuel (%)</label> <!-- label pour le champ taux annuel -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ taux annuel -->
-                                <input class="input" type="number" step="0.01" placeholder="Taux annuel"> <!-- input de type number pour le taux annuel -->
+                                <input class="input" type="number" step="0.01" placeholder="Taux annuel" required> <!-- input de type number pour le taux annuel -->
                             </div>
                         </div>
                     </div>
@@ -76,14 +79,14 @@
                         <div class="field column is-half is-6">
                             <label class="label">Durée (mois)</label> <!-- label pour le champ durée -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ durée -->
-                                <input class="input" type="number" placeholder="Durée en mois"> <!-- input de type number pour la durée -->
+                                <input class="input" type="number" placeholder="Durée en mois" required> <!-- input de type number pour la durée -->
                             </div>
                         </div>
 
                         <div class="field column is-half is-6">
                             <label class="label">Date de Début</label> <!-- label pour le champ date de début -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ date de début -->
-                                <input class="input" type="date"> <!-- input de type date pour la date de début -->
+                                <input class="input" type="date" required> <!-- input de type date pour la date de début -->
                             </div>
                         </div>
                     </div>
@@ -92,9 +95,9 @@
                         <div class="field column">
                             <label class="label">Client</label>
                             <div class="control">
-                                <div class="select client-space">
-                                    <select>
-                                        <option>Sélectionner un client</option>
+                                <div class="select client-space is-fullwidth"><!-- is-fullwidth pour que le select prenne toute la largeur disponible -->
+                                    <select required>
+                                        <option value="">Sélectionner un client</option>
                                         <!-- ajout des clients via javascript -->
                                     </select>
                                 </div>
@@ -103,16 +106,65 @@
                     </div>
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column">
-                            <div class="control">
-                                <button class="button is-link">Ajouter Prêt</button>
+                            <div class="control is-flex is-justify-content-center"> <!-- centrage du bouton -->
+                                <button class="button is-link" type="submit">Soumettre</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
 
+        
+
+<!------------------------------------------------------- Liste des prêts ------------------------------------------->
+
+<!-- tableau bulma-->
+        <div class="prets-list-container noto-sans-0">
+            <div class="section-title">
+                <h3 class="title titre-liste-prets">Liste des prêts</h3>
+            </div>
+            
+            <!-- Barre de recherche/filtre -->
+            <div class="field">
+                <div class="control has-icons-left">
+                    <input class="input" type="text" id="searchInput" placeholder="Rechercher par nom de client..."> <!-- input de recherche -->
+                    <span class="icon is-left">
+                        <i class="fa-solid fa-magnifying-glass"></i> <!-- icône de loupe -->
+                    </span>
+                </div>
+            </div>
+
+            <!-- Tableau des prêts -->
+            <table class="table is-fullwidth is-striped is-hoverable" id="pretsTable"> <!-- is-fullwidth pour que le tableau prenne toute la largeur disponible, is-striped pour des lignes alternées, is-hoverable pour effet au survol -->
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Montant</th>
+                        <th>Taux Annuel (%)</th>
+                        <th>Durée (mois)</th>
+                        <th>Date de Début</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pretsTableBody">
+                    <!-- Les lignes seront générées par JavaScript -->
+                </tbody>
+            </table>
+            
+            <!-- Pagination -->
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination"><!-- is-centered pour centrer la pagination -->
+                <a class="pagination-previous has-background-link" id="prevPage">Précédent</a>
+                <a class="pagination-next has-background-link" id="nextPage">Suivant</a>
+                <ul class="pagination-list" id="paginationList">
+                    <!-- Les numéros de page seront ajoutés ici via JavaScript -->
+                </ul>
+            </nav>
         </div>
 
     </main>
+
+<script scr="script.js"></script>
+<script src="script_prets.js"></script>
 </body>
 </html>
