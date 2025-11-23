@@ -1,0 +1,60 @@
+body {
+    font-family: "Noto Sans", sans-serif;
+    background: #f4f6fa;
+}
+
+/* Layout général */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar gauche */
+.sidebar {
+    width: 240px;
+    background: #0f1836;
+    color: white;
+    padding: 25px;
+}
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.logo {
+    width: 70px;
+}
+
+.sidebar h1 {
+    font-size: 22px;
+    margin-top: 10px;
+}
+.sidebar h1 span {
+    color: #4e8cff;
+}
+
+.nav-link {
+    display: block;
+    padding: 12px 10px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    color: #dcdcdc;
+}
+.nav-link:hover {
+    background: #1a2550;
+    color: white;
+}
+.nav-link.active {
+    background: #2656ff;
+    color: white;
+}
+
+.nav-link i {
+    margin-right: 10px;
+}
+
+/* Contenu */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+}
