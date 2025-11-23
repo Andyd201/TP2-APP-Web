@@ -93,6 +93,7 @@ form .input, form .select select {
     padding: 2em; /* Espacement interne */
     margin: 2em 5em 4em 23em; /* Marges externes */
     overflow: hidden; /* Cache la ligne qui dépasse */
+    margin-top: -2em;
 }
 
 /* ligne colorée sur le dessus du conteneur du formulaire */
@@ -145,4 +146,12 @@ form .input, form .select select {
     font-weight: 500; /* Poids de la police */
     
 }
+
+/* Styles des icônes dans l'input de recherche */
+#searchInput + .icon .fa-magnifying-glass {
+    color: rgb(50, 50, 50); /* Couleur grise pour l'icône */
+}
+
+
+
 

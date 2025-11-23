@@ -60,18 +60,32 @@
                     <h3 class="title titre-formulaire">Ajouter un nouveau prêt</h3>
                 </div>
                 <!--formulaire bulma -->
-                <form>
+                <form id="formPret">
+                    <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
+                        <div class="field column">
+                            <label class="label">Client</label>
+                            <div class="control">
+                                <div class="select client-space is-fullwidth"><!-- is-fullwidth pour que le select prenne toute la largeur disponible -->
+                                    <select id="nomClient" required>
+                                        <option value="">Sélectionner un client</option>
+                                        <!-- Les clients seront chargés via JavaScript -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
                             <label class="label">Montant</label> <!-- label pour le champ montant -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ montant -->
-                                <input class="input" type="number" placeholder="Montant du prêt" required> <!-- input de type number pour le montant du prêt -->
+                                <input id="montantPret" class="input" type="number" step="0.01" placeholder="Montant du prêt" required> <!-- input de type number pour le montant du prêt -->
                             </div>
                         </div>
                         <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
                             <label class="label">Taux Annuel (%)</label> <!-- label pour le champ taux annuel -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ taux annuel -->
-                                <input class="input" type="number" step="0.01" placeholder="Taux annuel" required> <!-- input de type number pour le taux annuel -->
+                                <input id="tauxInteret" class="input" type="number" step="0.01" placeholder="Taux annuel" required> <!-- input de type number pour le taux annuel -->
                             </div>
                         </div>
                     </div>
@@ -79,31 +93,18 @@
                         <div class="field column is-half is-6">
                             <label class="label">Durée (mois)</label> <!-- label pour le champ durée -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ durée -->
-                                <input class="input" type="number" placeholder="Durée en mois" required> <!-- input de type number pour la durée -->
+                                <input id="dureeMois" class="input" type="number" placeholder="Durée en mois" required> <!-- input de type number pour la durée -->
                             </div>
                         </div>
 
                         <div class="field column is-half is-6">
                             <label class="label">Date de Début</label> <!-- label pour le champ date de début -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ date de début -->
-                                <input class="input" type="date" required> <!-- input de type date pour la date de début -->
+                                <input id="dateDebut" class="input" type="date" required> <!-- input de type date pour la date de début -->
                             </div>
                         </div>
                     </div>
 
-                    <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
-                        <div class="field column">
-                            <label class="label">Client</label>
-                            <div class="control">
-                                <div class="select client-space is-fullwidth"><!-- is-fullwidth pour que le select prenne toute la largeur disponible -->
-                                    <select required>
-                                        <option value="">Sélectionner un client</option>
-                                        <!-- ajout des clients via javascript -->
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column">
                             <div class="control is-flex is-justify-content-center"> <!-- centrage du bouton -->
@@ -125,8 +126,8 @@
             </div>
             
             <!-- Barre de recherche/filtre -->
-            <div class="field">
-                <div class="control has-icons-left">
+            <div class="field"> <!-- is-half pour que la barre de recherche prenne la moitié de la largeur disponible -->
+                <div class="control has-icons-left"> <!-- is-three-quarters pour que la barre de recherche prenne les trois quarts de la largeur disponible -->
                     <input class="input" type="text" id="searchInput" placeholder="Rechercher par nom de client..."> <!-- input de recherche -->
                     <span class="icon is-left">
                         <i class="fa-solid fa-magnifying-glass"></i> <!-- icône de loupe -->

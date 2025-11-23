@@ -6,3 +6,18 @@ curl http://localhost:3000/allClients
 
 
 curl -X DELETE http://localhost:3000/deleteClient/1
+
+
+//=================================== TESTS PRETS ===================================
+
+curl -X POST http://localhost:3000/addPrets \
+     -H "Content-Type: application/json" \
+     -d '{"client_id": 1, "montantPret": 20000, "dureeMois": 24, "tauxInteret": 5.5}'
+
+curl http://localhost:3000/allPrets
+
+curl -X DELETE http://localhost:3000/deletePret/1
+
+curl -X PUT http://localhost:3000/updatePret/1 \
+     -H "Content-Type: application/json" \
+     -d '{"montantPret": 25000, "dureeMois": 36}'
