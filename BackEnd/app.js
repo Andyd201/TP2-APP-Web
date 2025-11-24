@@ -28,16 +28,16 @@ app.get('/', (req, res) =>{
 
 app.post('/addClients', async (req, res)=>{
     try{
-        const {nom, prenom, telephone, email, adresse} = req.body;
+        const {nom, Prenom, Telephone, email, adresse} = req.body;
 
-        if(!nom || !prenom || !telephone || !email || !adresse){
-            return res.status(400).json({error: "champ 'nom', 'prenom', 'telephone', 'email', 'adresse' obligation"})
+        if(!nom || !Prenom || !Telephone || !email || !adresse){
+            return res.status(400).json({error: "champ 'nom', 'Prenom', 'Telephone', 'email', 'adresse' obligation"})
         }
 
         const client = {
             nom: nom,
-            prenom: prenom,
-            telephone: telephone,
+            Prenom: Prenom,
+            Telephone: Telephone,
             email: email,
             adresse: adresse
         }
