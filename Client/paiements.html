@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_paiements.css">
+    <title>BES Loan – Paiements</title>
+</head>
+
+<body>
+<!------------------------------------ HEADER/NAVBAR --------------------------------------------------->
+    <header>
+        <!-- Navbar verticale à gauche -->
+        <nav class="navbar noto-sans-0" role="navigation" aria-label="main navigation">
+            <!-- Zone avec dégradé (logo + séparateur) -->
+            <div class="navbar-header">
+                <!-- Logo et nom de l'entreprise -->
+                <div class="logo-container">
+                    <img src="logo_BES_Loan.svg" alt="Logo BES Loan" id="logo">
+                    <h1 class="title">BES<br><span class="has-text-link">Loan</span></h1>
+                </div>
+                <!-- Ligne de séparation entre le logo et les liens de navigation -->
+                <hr class="navbar-divider">
+            </div>
+            <!-- Liens de navigation -->
+            <div class="link-space">
+                <a href="index.html" class="lien navbar-item"><i class="fa-solid fa-gauge-simple nav-icon" aria-hidden="true"></i>Dashboard</a>
+                <a href="Clients.html" class="lien navbar-item"><i class="fa-solid fa-user-group nav-icon" aria-hidden="true"></i>Clients</a>
+                <a href="prets.html" class="lien navbar-item"><i class="fa-solid fa-wallet nav-icon" aria-hidden="true"></i>Prêts</a>
+                <a href="paiements.html" class="lien navbar-item is-active"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
+            </div>
+
+            <button class="pastille-rafraichissement has-text-link noto-sans-0" onclick="location.reload()">
+                <i class="fa-solid fa-arrows-rotate arrow-icon" aria-hidden="true"></i>
+                <div class="pastille-rafraichissement-contenu">
+                    <span class="pastille-texte">Actualiser</span>
+                </div>
+            </button>
+        </nav>
+    </header>
+
+<!------------------------------------ MAIN CONTENT --------------------------------------------------->
+    <main class="content-area">
+        <!-- Conteneur principal avec navbar à gauche et contenu à droite -->
+        <div class="main-container">
+<!------------------------------------ TITRE DE LA PAGE --------------------------------------------------->
+            <div class="dashboard-title-container noto-sans-0">
+                <h1 class="dashboard-title">Gestion des Paiements</h1>
+            </div>
+
+<!------------------------------------ FORMULAIRE D'AJOUT DE PAIEMENT --------------------------------------------------->
+            <div class="paiements-form-container noto-sans-0">
+                <div class="form-box">
+                    <h2 class="form-title">Enregistrer un nouveau paiement</h2>
+                    <form id="formPaiement">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Prêt *</label>
+                                <select id="pret_id" class="form-input" required>
+                                    <option value="">-- Sélectionner un prêt --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Montant *</label>
+                                <input type="number" id="montant" class="form-input" step="0.01" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Date du paiement *</label>
+                                <input type="date" id="datePaiement" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Statut *</label>
+                                <select id="statut" class="form-input" required>
+                                    <option value="">-- Sélectionner un statut --</option>
+                                    <option value="Effectué">Effectué</option>
+                                    <option value="En attente">En attente</option>
+                                    <option value="Échoué">Échoué</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-full-width">
+                            <label class="form-label">Notes</label>
+                            <textarea id="notes" class="form-textarea"></textarea>
+                        </div>
+
+                        <button type="submit" class="form-button">Enregistrer le paiement</button>
+                    </form>
+                </div>
+            </div>
+
+<!------------------------------------ STATISTIQUES DES PAIEMENTS --------------------------------------------------->
+            <div class="paiements-stats-container noto-sans-0">
+                <div class="stats-box">
+                    <div class="stat-item">
+                        <div class="stat-icon effectue">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Paiements effectués</p>
+                            <p class="stat-number" id="countEffectue">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon attente">
+                            <i class="fa-solid fa-hourglass"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">En attente</p>
+                            <p class="stat-number" id="countAttente">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon echec">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Échoués</p>
+                            <p class="stat-number" id="countEchec">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon total">
+                            <i class="fa-solid fa-money-bill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Montant total</p>
+                            <p class="stat-number" id="totalMontant">0 $</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!------------------------------------ LISTE DES PAIEMENTS --------------------------------------------------->
+            <div class="paiements-list-container noto-sans-0">
+                <div class="list-box">
+                    <h2 class="list-title">Historique des paiements</h2>
+
+                    <input type="text" id="search" class="search-input" placeholder="Rechercher par prêt, client ou statut...">
+
+                    <div class="filters">
+                        <select id="filterStatut" class="filter-select">
+                            <option value="">Tous les statuts</option>
+                            <option value="Effectué">Effectué</option>
+                            <option value="En attente">En attente</option>
+                            <option value="Échoué">Échoué</option>
+                        </select>
+                    </div>
+
+                    <table class="paiements-table">
+                        <thead>
+                            <tr>
+                                <th>ID Prêt</th>
+                                <th>Client</th>
+                                <th>Montant</th>
+                                <th>Date de paiement</th>
+                                <th>Statut</th>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablePaiements"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="script_paiements.js"></script>
+
+</body>
+
+</html>

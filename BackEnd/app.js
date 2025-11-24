@@ -5,6 +5,7 @@ const port = 3000
 
 const {db, createTable} = require('./DBclient')
 const {createTablePrets} = require('./DBprets')
+const {createTablePaiements} = require('./DBpaiements')
 
 
 const app = express()
@@ -162,9 +163,91 @@ app.put('/updatePret/:id', async (req, res) => { // Route pour modifier un prêt
     }
 });
 
+//========================================= ROUTES POUR LES PAIEMENTS =========================================//
+
+//-------------------------------------- récupération de tous les paiements --------------------------------------//
+
+app.get('/allPaiements', async (req, res) => {
+    try {
+        const tousPaiements = await db("Paiements").select("*").orderBy("id", "desc");
+        res.status(200).json(tousPaiements);
+    } catch (err) {
+        console.error("Erreur /allPaiements", err);
+        res.status(500).json({ error: "Erreur serveur.." });
+    }
+});
+
+//-------------------------------------- ajout d'un nouveau paiement --------------------------------------//
+
+app.post('/addPaiement', async (req, res) => {
+    try {
+        const { pret_id, montant, datePaiement, statut, notes } = req.body;
+
+        if (!pret_id || !montant || !datePaiement || !statut) {
+            return res.status(400).json({ error: "Champs 'pret_id', 'montant', 'datePaiement', 'statut' obligatoires" });
+        }
+
+        const nouveauPaiement = {
+            pret_id: pret_id,
+            montant: montant,
+            datePaiement: datePaiement,
+            statut: statut,
+            notes: notes || null
+        };
+
+        const [id] = await db("Paiements").insert(nouveauPaiement);
+        nouveauPaiement.id = id;
+        res.status(201).json(nouveauPaiement);
+    } catch (err) {
+        console.error("Erreur /addPaiement", err);
+        res.status(500).json({ error: "Erreur serveur.." });
+    }
+});
+
+//-------------------------------------- suppression d'un paiement --------------------------------------//
+
+app.delete('/deletePaiement/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await db("Paiements").where('id', id).del();
+        if (deleted == 0) {
+            return res.status(404).json({ error: "Paiement introuvable" });
+        }
+        res.status(200).json({ message: "Paiement supprimé", deleted: deleted });
+    } catch (err) {
+        console.error("Erreur /deletePaiement/:id", err);
+        res.status(500).json({ error: "Erreur serveur.." });
+    }
+});
+
+//-------------------------------------- modification d'un paiement --------------------------------------//
+
+app.put('/updatePaiement/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { montant, datePaiement, statut, notes } = req.body;
+
+        const updatedPaiement = {
+            montant: montant,
+            datePaiement: datePaiement,
+            statut: statut,
+            notes: notes || null
+        };
+
+        const updated = await db("Paiements").where('id', id).update(updatedPaiement);
+        if (updated == 0) {
+            return res.status(404).json({ error: "Paiement introuvable" });
+        }
+        res.status(200).json({ message: "Paiement modifié", updated: updated });
+    } catch (err) {
+        console.error("Erreur /updatePaiement/:id", err);
+        res.status(500).json({ error: "Erreur serveur.." });
+    }
+});
+
 //==================================== INITIALISATION DU SERVEUR ====================================//
 
-createTable(), createTablePrets() // appelle les fonctions de création des tables
+createTable(), createTablePrets(), createTablePaiements() // appelle les fonctions de création des tables
 .then(()=>{ // si tout se passe bien, démarre le serveur
 
    app.listen(3000, ()=>{ // écoute sur le port 3000

@@ -6,91 +6,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_client.css">
     <title>BES Loan – Clients</title>
 </head>
 
 <body>
-<div class="layout">
-    
-    <!-- ======================= NAVBAR GAUCHE ======================= -->
-    <nav class="sidebar">
-        <div class="logo-section">
-            <img src="logo_BES_Loan.svg" class="logo">
-            <h1>BES <span>Loan</span></h1>
-        </div>
-        <hr>
-
-        <a href="index.html" class="nav-link"><i class="fa-solid fa-gauge"></i> Dashboard</a>
-        <a href="Clients.html" class="nav-link active"><i class="fa-solid fa-users"></i> Clients</a>
-        <a href="prets.html" class="nav-link"><i class="fa-solid fa-wallet"></i> Prêts</a>
-        <a href="#" class="nav-link"><i class="fa-solid fa-credit-card"></i> Paiements</a>
-    </nav>
-
-    <!-- ======================= PAGE CONTENU ======================= -->
-    <main class="content">
-
-        <h1 class="title is-3">Gestion des Clients</h1>
-
-        <!-- Formulaire -->
-        <div class="box">
-            <h2 class="subtitle">Ajouter un nouveau client</h2>
-
-            <form id="formClient">
-                <div class="columns">
-                    <div class="column">
-                        <label class="label">Prénom *</label>
-                        <input type="text" id="Prenom" class="input" required>
-                    </div>
-
-                    <div class="column">
-                        <label class="label">Nom *</label>
-                        <input type="text" id="nom" class="input" required>
-                    </div>
+<!------------------------------------ HEADER/NAVBAR --------------------------------------------------->
+    <header>
+        <!-- Navbar verticale à gauche -->
+        <nav class="navbar noto-sans-0" role="navigation" aria-label="main navigation">
+            <!-- Zone avec dégradé (logo + séparateur) -->
+            <div class="navbar-header">
+                <!-- Logo et nom de l'entreprise -->
+                <div class="logo-container">
+                    <img src="logo_BES_Loan.svg" alt="Logo BES Loan" id="logo">
+                    <h1 class="title">BES<br><span class="has-text-link">Loan</span></h1>
                 </div>
+                <!-- Ligne de séparation entre le logo et les liens de navigation -->
+                <hr class="navbar-divider">
+            </div>
+            <!-- Liens de navigation -->
+            <div class="link-space">
+                <a href="index.html" class="lien navbar-item"><i class="fa-solid fa-gauge-simple nav-icon" aria-hidden="true"></i>Dashboard</a>
+                <a href="Clients.html" class="lien navbar-item is-active"><i class="fa-solid fa-user-group nav-icon" aria-hidden="true"></i>Clients</a>
+                <a href="prets.html" class="lien navbar-item"><i class="fa-solid fa-wallet nav-icon" aria-hidden="true"></i>Prêts</a>
+                <a href="paiements.html" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
+            </div>
 
-                <div class="columns">
-                    <div class="column">
-                        <label class="label">Téléphone *</label>
-                        <input type="number" id="Telephone" class="input" required>
-                    </div>
-
-                    <div class="column">
-                        <label class="label">Email *</label>
-                        <input type="email" id="email" class="input" required>
-                    </div>
+            <button class="pastille-rafraichissement has-text-link noto-sans-0">
+                <i class="fa-solid fa-arrows-rotate arrow-icon is-link" aria-hidden="true"></i>
+                <div class="pastille-rafraichissement-contenu">
+                    <span class="pastille-texte">Actualiser</span>
                 </div>
+            </button>
+        </nav>
+    </header>
 
-                <label class="label">Adresse *</label>
-                <textarea id="adresse" class="textarea" required></textarea>
+<!------------------------------------ MAIN CONTENT --------------------------------------------------->
+    <main class="content-area">
+        <!-- Conteneur principal avec navbar à gauche et contenu à droite -->
+        <div class="main-container">
+<!------------------------------------ TITRE DE LA PAGE --------------------------------------------------->
+            <div class="dashboard-title-container noto-sans-0">
+                <h1 class="dashboard-title">Gestion des Clients</h1>
+            </div>
 
-                <button class="button is-link mt-4">Ajouter</button>
-            </form>
+<!------------------------------------ FORMULAIRE D'AJOUT DE CLIENT --------------------------------------------------->
+            <div class="clients-form-container noto-sans-0">
+                <div class="form-box">
+                    <h2 class="form-title">Ajouter un nouveau client</h2>
+                    <form id="formClient">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Prénom *</label>
+                                <input type="text" id="Prenom" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nom *</label>
+                                <input type="text" id="nom" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Téléphone *</label>
+                                <input type="number" id="Telephone" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email *</label>
+                                <input type="email" id="email" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-full-width">
+                            <label class="form-label">Adresse *</label>
+                            <textarea id="adresse" class="form-textarea" required></textarea>
+                        </div>
+
+                        <button type="submit" class="form-button">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+
+<!------------------------------------ LISTE DES CLIENTS --------------------------------------------------->
+            <div class="clients-list-container noto-sans-0">
+                <div class="list-box">
+                    <h2 class="list-title">Liste des clients</h2>
+
+                    <input type="text" id="search" class="search-input" placeholder="Rechercher...">
+
+                    <table class="clients-table">
+                        <thead>
+                            <tr>
+                                <th>Prénom</th>
+                                <th>Nom</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                <th>Adresse</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableClients"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-
-        <!-- Liste des clients -->
-        <div class="box">
-            <h2 class="subtitle">Liste des clients</h2>
-
-            <input type="text" id="search" class="input mb-3" placeholder="Rechercher...">
-
-            <table class="table is-striped is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>Prénom</th>
-                        <th>Nom</th>
-                        <th>Téléphone</th>
-                        <th>Email</th>
-                        <th>Adresse</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="tableClients"></tbody>
-            </table>
-        </div>
-
     </main>
-</div>
 
 <script src="script_clients.js"></script>
 
