@@ -20,7 +20,7 @@ async function chargerClients() {
         clients.forEach(client => { // pour chaque client, on crée une option dans le select
             const option = document.createElement('option'); // création de l'élément option
             option.value = client.id; // valeur de l'option (id du client)
-            option.textContent = `${client.prenom} ${client.nom}`; // texte affiché dans l'option (nom et prénom du client)
+            option.textContent = `${client.Prenom} ${client.nom}`; // texte affiché dans l'option (nom et prénom du client)
             selectClient.appendChild(option); // ajout de l'option au select
         });
     // attrape les erreurs
@@ -110,7 +110,7 @@ async function afficherPrets() {
             const pretElement = document.createElement('div');
             pretElement.className = 'pret-item box';
             pretElement.innerHTML = `
-                <h3 class="title is-4">Client ID: ${pret.client_id}</h3>
+                <h3 class="title is-4">${pret.Prenom} ${pret.nom}</h3>
                 <p><strong>Montant du prêt :</strong> €${pret.montantPret.toFixed(2)}</p>
                 <p><strong>Durée :</strong> ${pret.dureeMois} mois</p>
                 <p><strong>Taux d'intérêt :</strong> ${pret.tauxInteret}%</p>

@@ -83,12 +83,20 @@ app.get('/', (req, res) =>{ // Route pour servir la page des prêts
     res.sendFile(path.join(__dirname, "../Client", "prets.html")); // Envoie le fichier HTML des prêts
 });
 
-//-------------------------------------- récupération de tous les prêts --------------------------------------//
+//-------------------------------------- récupération de tous les prêts avec informations client --------------------------------------//
 
 app.get('/allPrets', async (req, res) => { // Route pour récupérer tous les prêts
     try {
         const tousLesPrets = await db("Prets").select("*").orderBy("id", "desc");
-        res.status(200).json(tousLesPrets );
+        
+        // Pour chaque prêt, récupérer les infos du client
+        for (let i = 0; i < tousLesPrets.length; i++) {
+            const client = await db("Clients").where("id", tousLesPrets[i].client_id).first();
+            tousLesPrets[i].Prenom = client ? client.Prenom : "Inconnu";
+            tousLesPrets[i].nom = client ? client.nom : "Inconnu";
+        }
+        
+        res.status(200).json(tousLesPrets);
     } catch (err) {
         console.error("Erreur /allPrets", err);
         res.status(500).json({ error: "Erreur serveur.." });
