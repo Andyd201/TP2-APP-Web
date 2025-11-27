@@ -26,7 +26,6 @@ async function chargerClients() {
     // attrape les erreurs
     } catch (error) {
         console.error('Erreur lors du chargement des clients:', error);
-        alert('Erreur lors du chargement de la liste des clients');
     }
 }
 
@@ -77,11 +76,8 @@ async function ajouterPret(event) {
         
         // Actualisation de l'affichage des prêts
         afficherPrets(); // défini dans la section affichage des prêts
-        
-        alert('Prêt ajouté avec succès !');
     } catch (error) {
         console.error('Erreur:', error);
-        alert('Erreur lors de l\'ajout du prêt: ' + error.message);
     }
 }
 // Ajout de l'événement de soumission du formulaire
@@ -91,10 +87,9 @@ document.getElementById('formPret').addEventListener('submit', ajouterPret);
 
 // Fonction pour afficher les prêts
 async function afficherPrets() {
-    const listePretsContainer = document.getElementById('listePrets'); // conteneur où les prêts seront affichés
-    listePretsContainer.innerHTML = ''; // Réinitialisation du conteneur
+    const pretsTableBody = document.getElementById('pretsTableBody'); // corps du tableau des prêts
+    pretsTableBody.innerHTML = ''; // Réinitialisation du corps du tableau
 
-    //
     try {
         // Récupération des prêts depuis le serveur
         const response = await fetch('http://localhost:3000/allPrets');
@@ -105,22 +100,39 @@ async function afficherPrets() {
 
         const prets = await response.json();
 
-        // Parcours des prêts et création des éléments HTML
+        // Parcours des prêts et création des lignes du tableau
         prets.forEach(pret => {
-            const pretElement = document.createElement('div');
-            pretElement.className = 'pret-item box';
-            pretElement.innerHTML = `
-                <h3 class="title is-4">${pret.Prenom} ${pret.nom}</h3>
-                <p><strong>Montant du prêt :</strong> €${pret.montantPret.toFixed(2)}</p>
-                <p><strong>Durée :</strong> ${pret.dureeMois} mois</p>
-                <p><strong>Taux d'intérêt :</strong> ${pret.tauxInteret}%</p>
-                <button class="button is-danger is-small" onclick="supprimerPret(${pret.id})">Supprimer</button>
+            const row = document.createElement('tr');
+            
+            // Déterminer le statut (on suppose qu'il n'y a pas de colonne statut dans la BD, donc c'est juste "Actif" pour tous)
+            const statut = 'Actif';
+            
+            row.innerHTML = `
+                <td>${pret.Prenom} ${pret.nom}</td>
+                <td>$${pret.montantPret.toFixed(2)}</td>
+                <td>${pret.tauxInteret}%</td>
+                <td>${pret.dureeMois} mois</td>
+                <td>-</td>
+                <td><span class="tag is-success">${statut}</span></td>
+                <td>
+                    <button class="button is-small is-danger" onclick="supprimerPret(${pret.id})">Supprimer</button>
+                </td>
             `;
-            listePretsContainer.appendChild(pretElement);
+            
+            pretsTableBody.appendChild(row);
         });
+        
+        // Si aucun prêt, afficher un message
+        if (prets.length === 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = '<td colspan="7" style="text-align: center; padding: 20px;">Aucun prêt enregistré</td>';
+            pretsTableBody.appendChild(row);
+        }
     } catch (error) {
         console.error('Erreur:', error);
-        listePretsContainer.innerHTML = '<p class="has-text-danger">Erreur lors du chargement des prêts</p>';
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="7" style="text-align: center; color: red;">Erreur lors du chargement des prêts</td>';
+        pretsTableBody.appendChild(row);
     }
 }
 // Appel initial pour afficher les prêts au chargement de la page
@@ -129,13 +141,13 @@ afficherPrets();
 // Fonction pour filtrer les prêts en fonction de la recherche
 function filtrerPrets() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
-    const pretItems = document.querySelectorAll('.pret-item');
-    pretItems.forEach(item => {
-        const nomClient = item.querySelector('h3').textContent.toLowerCase();
+    const pretsRows = document.querySelectorAll('#pretsTableBody tr');
+    pretsRows.forEach(row => {
+        const nomClient = row.querySelector('td').textContent.toLowerCase(); // Première colonne = nom du client
         if (nomClient.includes(searchInput)) {
-            item.style.display = ''; // Afficher l'élément
+            row.style.display = ''; // Afficher la ligne
         } else {
-            item.style.display = 'none'; // Masquer l'élément
+            row.style.display = 'none'; // Masquer la ligne
         }
     });
 }
@@ -145,10 +157,6 @@ document.getElementById('searchInput').addEventListener('input', filtrerPrets);
 //============================================== SUPPRESSION D'UN PRÊT ==============================================//
 // Fonction pour supprimer un prêt
 async function supprimerPret(id) {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer ce prêt ?')) {
-        return;
-    }
-
     try {
         const response = await fetch(`http://localhost:3000/deletePret/${id}`, {
             method: 'DELETE'
@@ -158,11 +166,10 @@ async function supprimerPret(id) {
             throw new Error('Erreur lors de la suppression du prêt');
         }
 
-        alert('Prêt supprimé avec succès !');
+        console.log('Prêt supprimé avec succès');
         afficherPrets(); // Rafraîchir l'affichage
     } catch (error) {
         console.error('Erreur:', error);
-        alert('Erreur lors de la suppression du prêt: ' + error.message);
     }
 }
 

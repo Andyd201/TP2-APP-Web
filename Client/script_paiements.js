@@ -125,7 +125,7 @@ async function handleFormSubmit(e) {
     const notes = document.getElementById('notes').value;
 
     if (!pret_id || !montant || !datePaiement || !statut) {
-        alert('Veuillez remplir tous les champs requis');
+        console.error('Champs requis manquants');
         return;
     }
 
@@ -144,12 +144,11 @@ async function handleFormSubmit(e) {
 
         if (!response.ok) throw new Error('Erreur lors de l\'ajout du paiement');
 
-        alert('Paiement enregistré avec succès!');
+        console.log('Paiement enregistré avec succès');
         document.getElementById('formPaiement').reset();
         loadPaiements();
     } catch (error) {
         console.error('Erreur handleFormSubmit:', error);
-        alert('Erreur lors de l\'enregistrement du paiement');
     }
 }
 
@@ -181,8 +180,6 @@ function handleFilterChange(e) {
 
 // ====== Supprimer un paiement ======
 async function deletePaiement(id) {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer ce paiement?')) return;
-
     try {
         const response = await fetch(`http://localhost:3000/deletePaiement/${id}`, {
             method: 'DELETE'
@@ -190,10 +187,9 @@ async function deletePaiement(id) {
 
         if (!response.ok) throw new Error('Erreur lors de la suppression');
 
-        alert('Paiement supprimé avec succès');
+        console.log('Paiement supprimé avec succès');
         loadPaiements();
     } catch (error) {
         console.error('Erreur deletePaiement:', error);
-        alert('Erreur lors de la suppression du paiement');
     }
 }
