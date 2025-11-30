@@ -43,13 +43,15 @@ async function ajouterPret(event) {
     const montantPret = parseFloat(document.getElementById('montantPret').value); // Montant du prêt
     const dureeMois = parseInt(document.getElementById('dureeMois').value); // Durée en mois
     const tauxInteret = parseFloat(document.getElementById('tauxInteret').value); // Taux d'intérêt
+    const dateDebut = document.getElementById('dateDebut').value; // Date de début
 
     // Création d'un objet prêt
     const nouveauPret = {
         client_id: client_id,
         montantPret: montantPret,
         dureeMois: dureeMois,
-        tauxInteret: tauxInteret
+        tauxInteret: tauxInteret,
+        dateDebut: dateDebut
     };
 
     // try-catch pour la gestion des erreurs
@@ -94,45 +96,57 @@ async function afficherPrets() {
         // Récupération des prêts depuis le serveur
         const response = await fetch('http://localhost:3000/allPrets');
         
+        // si la reponse n'est pas ok, on lance une erreur
         if (!response.ok) {
             throw new Error('Erreur lors de la récupération des prêts');
         }
 
+        // si la reponse est ok, on convertit en JSON
         const prets = await response.json();
 
         // Parcours des prêts et création des lignes du tableau
         prets.forEach(pret => {
             const row = document.createElement('tr');
             
-            // Déterminer le statut (on suppose qu'il n'y a pas de colonne statut dans la BD, donc c'est juste "Actif" pour tous)
-            const statut = 'Actif';
+            // Formater la date de début
+            const dateDebut = pret.dateDebut ? formatDate(pret.dateDebut) : 'N/A';
             
+            // Déterminer le statut
+            const statut = pret.statut || 'actif'; // statut du prêt, par défaut 'actif'
+            const statutClasse = statut === 'actif' ? 'is-success' : // vert pour actif
+                                 statut === 'rembourse' ? 'is-info' : 'is-warning'; // bleu pour remboursé, orange pour en retard
+            const statutTexte = statut === 'actif' ? 'Actif' : // texte à afficher
+                               statut === 'rembourse' ? 'Remboursé' : 'En retard'; // texte à afficher 
+            
+            // Remplir la ligne du tableau avec les informations du prêt
             row.innerHTML = `
                 <td>${pret.Prenom} ${pret.nom}</td>
-                <td>$${pret.montantPret.toFixed(2)}</td>
+                <td>$${pret.montantPret.toFixed(2)}</td> <!-- montant prêt formaté avec deux décimales -->
                 <td>${pret.tauxInteret}%</td>
                 <td>${pret.dureeMois} mois</td>
-                <td>-</td>
-                <td><span class="tag is-success">${statut}</span></td>
+                <td>${dateDebut}</td>
+                <td><span class="tag ${statutClasse}">${statutTexte}</span></td> <!-- badge de statut pour indiquer le statut du prêt -->
                 <td>
-                    <button class="button is-small is-danger" onclick="supprimerPret(${pret.id})">Supprimer</button>
+                    <button class="button is-small is-danger" style="border-radius: 0.4em; font-weight: 700; font-size: 0.7em" onclick="supprimerPret(${pret.id})">Supprimer</button>
                 </td>
             `;
             
+            // Ajouter la ligne au corps du tableau
             pretsTableBody.appendChild(row);
         });
         
         // Si aucun prêt, afficher un message
         if (prets.length === 0) {
-            const row = document.createElement('tr');
+            const row = document.createElement('tr'); // création d'une nouvelle ligne
             row.innerHTML = '<td colspan="7" style="text-align: center; padding: 20px;">Aucun prêt enregistré</td>';
-            pretsTableBody.appendChild(row);
+            pretsTableBody.appendChild(row); // ajout de la ligne au corps du tableau
         }
+    // vient attraper les erreurs
     } catch (error) {
         console.error('Erreur:', error);
-        const row = document.createElement('tr');
+        const row = document.createElement('tr'); // création d'une nouvelle ligne
         row.innerHTML = '<td colspan="7" style="text-align: center; color: red;">Erreur lors du chargement des prêts</td>';
-        pretsTableBody.appendChild(row);
+        pretsTableBody.appendChild(row); // ajout de la ligne au corps du tableau
     }
 }
 // Appel initial pour afficher les prêts au chargement de la page
@@ -140,11 +154,13 @@ afficherPrets();
 //============================================== RECHERCHE DE PRÊTS ==============================================//
 // Fonction pour filtrer les prêts en fonction de la recherche
 function filtrerPrets() {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase();
-    const pretsRows = document.querySelectorAll('#pretsTableBody tr');
+    const searchInput = document.getElementById('searchInput').value.toLowerCase(); // valeur de l'input de recherche en minuscules
+    const pretsRows = document.querySelectorAll('#pretsTableBody tr'); // toutes les lignes du tableau des prêts
+
+    // Parcours des lignes et affichage/masquage en fonction de la recherche
     pretsRows.forEach(row => {
         const nomClient = row.querySelector('td').textContent.toLowerCase(); // Première colonne = nom du client
-        if (nomClient.includes(searchInput)) {
+        if (nomClient.includes(searchInput)) { // si le nom du client inclut la recherche
             row.style.display = ''; // Afficher la ligne
         } else {
             row.style.display = 'none'; // Masquer la ligne
@@ -158,18 +174,32 @@ document.getElementById('searchInput').addEventListener('input', filtrerPrets);
 // Fonction pour supprimer un prêt
 async function supprimerPret(id) {
     try {
-        const response = await fetch(`http://localhost:3000/deletePret/${id}`, {
+        const response = await fetch(`http://localhost:3000/deletePret/${id}`, { // envoie une requête DELETE au serveur
             method: 'DELETE'
         });
 
+        // si la reponse n'est pas ok, on lance une erreur
         if (!response.ok) {
             throw new Error('Erreur lors de la suppression du prêt');
         }
 
+        // Rafraîchir l'affichage après suppression
         console.log('Prêt supprimé avec succès');
         afficherPrets(); // Rafraîchir l'affichage
+    // vient attraper les erreurs
     } catch (error) {
         console.error('Erreur:', error);
     }
 }
 
+//============================================== FONCTION UTILITAIRE POUR FORMATER LES DATES ==============================================//
+
+// Fonction pour formater les dates au format JJ/MM/AAAA
+function formatDate(dateString) {
+    if (!dateString) return 'N/A'; // retourner N/A si la date est nulle ou indéfinie
+    const date = new Date(dateString); // créer un objet Date à partir de la chaîne de date
+    const jour = String(date.getDate()).padStart(2, '0'); // jour avec deux chiffres
+    const mois = String(date.getMonth() + 1).padStart(2, '0'); // mois avec deux chiffres
+    const annee = date.getFullYear(); // année sur quatre chiffres
+    return `${jour}/${mois}/${annee}`; // retourner la date formatée
+}

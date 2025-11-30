@@ -13,8 +13,34 @@ async function createTablePrets() { // asynnc et await pour les operations async
             table.float("montantPret").notNullable();
             table.integer("dureeMois").notNullable();
             table.float("tauxInteret").notNullable();
+            table.date("dateDebut"); // Date de début du prêt
+            table.date("dateEcheance"); // Date d'échéance du prêt
+            table.string("statut").defaultTo("actif"); // Statut du prêt: actif, remboursé, en_retard
         });
         console.log("Table 'Prets' cree..");
+    } else {
+        // Si la table existe, vérifier et ajouter les colonnes manquantes
+        const hasDateDebut = await db.schema.hasColumn("Prets", "dateDebut"); // vérifie si la colonne dateDebut existe
+        const hasDateEcheance = await db.schema.hasColumn("Prets", "dateEcheance"); // vérifie si la colonne dateEcheance existe
+        const hasStatut = await db.schema.hasColumn("Prets", "statut"); // vérifie si la colonne statut existe
+        
+        // si une des colonnes n'existe pas, on l'ajoute
+        if (!hasDateDebut || !hasDateEcheance || !hasStatut) {
+            await db.schema.alterTable("Prets", (table) => { // alterTable pour modifier la table existante
+                if (!hasDateDebut) { // si la colonne dateDebut n'existe pas
+                    table.date("dateDebut"); // ajoute la colonne dateDebut
+                    console.log("Colonne 'dateDebut' ajoutée à la table Prets");
+                }
+                if (!hasDateEcheance) { // si la colonne dateEcheance n'existe pas
+                    table.date("dateEcheance"); // ajoute la colonne dateEcheance
+                    console.log("Colonne 'dateEcheance' ajoutée à la table Prets");
+                }
+                if (!hasStatut) { // si la colonne statut n'existe pas
+                    table.string("statut").defaultTo("actif"); // ajoute la colonne statut avec une valeur par défaut "actif"
+                    console.log("Colonne 'statut' ajoutée à la table Prets");
+                }
+            });
+        }
     }
 }
 

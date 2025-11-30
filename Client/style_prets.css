@@ -105,7 +105,6 @@ form .input, form .select select {
     width: 100%; /* Largeur totale */
     height: 4px; /* Hauteur de la ligne */
     background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    transition: height 0.3s ease; /* Transition pour l'animation */
     z-index: 1; /* Place la ligne au-dessus du fond */
 }
 
@@ -113,9 +112,18 @@ form .input, form .select select {
 #pretsTable {
     width: 100%; /* Largeur totale */
     border-collapse: collapse; /* Fusion des bordures */
-    background-color: rgba(147, 112, 219, 0.4); /* Fond blanc semi-transparent pour le tableau */
+    background-color: (255, 255, 255, 0.8); /* Fond blanc semi-transparent pour le tableau */
     border-radius: 8px; /* Bords arrondis */
     overflow: hidden; /* Cache les débordements */
+}
+
+#pretsTable thead {
+    background-color: rgba(200, 200, 200, 0.5); /* Couleur de fond de l'en-tête */
+    color: white; /* Couleur du texte de l'en-tête */
+}
+
+#pretsTable tr:hover td{
+    background-color: rgba(147, 112, 219, 0.2); /* Couleur de fond au survol */
 }
 
 /* Styles des en-têtes du tableau */

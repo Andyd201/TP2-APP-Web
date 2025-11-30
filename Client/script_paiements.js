@@ -4,9 +4,11 @@ let allPrets = [];
 let allClients = [];
 
 // ====== Initialisation ======
-document.addEventListener('DOMContentLoaded', () => {
-    loadPrets();
-    loadPaiements();
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadPrets();
+    await loadClients();
+    populatePretSelect();
+    await loadPaiements();
     setupEventListeners();
 });
 
@@ -16,8 +18,6 @@ async function loadPrets() {
         const response = await fetch('http://localhost:3000/allPrets');
         if (!response.ok) throw new Error('Erreur lors du chargement des prêts');
         allPrets = await response.json();
-        loadClients();
-        populatePretSelect();
     } catch (error) {
         console.error('Erreur loadPrets:', error);
     }
@@ -88,7 +88,7 @@ function displayPaiements(paiements) {
             <td>${new Date(paiement.datePaiement).toLocaleDateString('fr-FR')}</td>
             <td>${statusBadge}</td>
             <td>${paiement.notes || '-'}</td>
-            <td><button class="delete-btn" onclick="deletePaiement(${paiement.id})">Supprimer</button></td>
+            <td><button class="delete-btn is-danger" style="border-radius:0.4em; font-weight:700; font-size:0.75em" onclick="deletePaiement(${paiement.id})">Supprimer</button></td>
         `;
         tbody.appendChild(row);
     });

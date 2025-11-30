@@ -35,8 +35,8 @@
                 <a href="paiements.html" class="lien navbar-item"><i class="fa-solid fa-credit-card nav-icon" aria-hidden="true"></i>Paiements</a>
             </div>
 <!--------------------------------------- pastille rafraichissement --------------------------------------------------->
-            <button class="pastille-rafraichissement has-text-link noto-sans-0">
-                <i class="fa-solid fa-arrows-rotate arrow-icon is-link" aria-hidden="true"></i>
+            <button class="pastille-rafraichissement has-text-link noto-sans-0" onclick="location.reload()"> <!-- onclick permet de rafraîchir la page -->
+                <i class="fa-solid fa-arrows-rotate arrow-icon" aria-hidden="true"></i>
                 <div class="pastille-rafraichissement-contenu">
                     <span class="pastille-texte">Actualiser</span>
                 </div>
@@ -54,14 +54,15 @@
             <div class="dashboard-title-container noto-sans-0">
                 <h1 class="dashboard-title">Dashboard</h1>
 <!--------------------------------------- PASTILLE ROUGE --------------------------------------------------->
-                <button class="pastille-rouge">
-                    <i class="fa-solid fa-circle-exclamation exclamation-icon" aria-hidden="true"></i>
-                    <div class="pastille-contenu">
-                        <!------ contenu javascript (données pour tester) ----->
-                        <span class="pastille-nombre">3</span>
-                        <span class="pastille-texte">prêts en retard</span>
-                    </div>
-                </button>
+                <a href="#clients-en-retard" style="text-decoration: none;"> <!-- lien vers la section des clients en retard -->
+                    <button class="pastille-rouge">
+                        <i class="fa-solid fa-circle-exclamation exclamation-icon" aria-hidden="true"></i> 
+                        <div class="pastille-contenu"> <!-- contenu inséré via JavaScript -->
+                            <span class="pastille-nombre">0</span>
+                            <span class="pastille-texte">prêt(s) en retard</span>
+                        </div>
+                    </button>
+                </a>
             </div>
 <!------------------------------------ ENCADRÉS PRÊTS ACTIFS/REMBOURSÉS/EN RETARD --------------------------------------------------->
             <div class="info-boxes-container noto-sans-0">
@@ -70,13 +71,12 @@
                     <div class="info-box-icon-group">
                         <i class="fa-solid fa-file-contract info-box-icon"></i>
                     </div>
-                    <div class="info-box-content">
-                        <h2 class="info-box-title">Prêts actifs</h2>
-                        <p class="info-box-number">127</p>
-                        <span class="info-box-trend positive">
-                            <i class="fa-solid fa-arrow-up"></i> +12%
-                        </span>
-                    </div>
+                    <a href="prets.html" style="text-decoration: none;"> <!-- lien vers la page des prêts -->
+                        <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
+                            <h2 class="info-box-title">Prêts actifs</h2>
+                            <p class="info-box-number">0</p>
+                        </div>
+                    </a>
                 </div>
 
                 <!-------- prêts remboursés ------------------------------------------------------>
@@ -84,13 +84,12 @@
                     <div class="info-box-icon-group">
                         <i class="fa-solid fa-circle-check info-box-icon"></i>
                     </div>
-                    <div class="info-box-content">
-                        <h2 class="info-box-title">Prêts remboursés</h2>
-                        <p class="info-box-number">843</p>
-                        <span class="info-box-trend positive">
-                            <i class="fa-solid fa-arrow-up"></i> +8%
-                        </span>
-                    </div>
+                    <a href="paiements.html" style="text-decoration: none;"> <!-- lien vers la page des paiements -->
+                        <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
+                            <h2 class="info-box-title">Prêts remboursés</h2>
+                            <p class="info-box-number">0</p>
+                        </div>
+                    </a>
                 </div>
                 
                 <!-------- prêts en retard ------------------------------------------------->
@@ -98,13 +97,12 @@
                     <div class="info-box-icon-group">
                         <i class="fa-solid fa-clock info-box-icon"></i>
                     </div>
-                    <div class="info-box-content">
-                        <h2 class="info-box-title">Prêts en retard</h2>
-                        <p class="info-box-number">3</p>
-                        <span class="info-box-trend negative">
-                            <i class="fa-solid fa-arrow-down"></i> -25%
-                        </span>
-                    </div>
+                    <a href="#clients-en-retard" style="text-decoration: none;"> <!-- lien vers la section des clients en retard -->
+                        <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
+                            <h2 class="info-box-title">Prêts en retard</h2>
+                            <p class="info-box-number">0</p>
+                        </div>
+                    </a>
                 </div>
             </div>
 <!-------------------------------------- ENCADRÉS NOMBRE TOTAL PRÊTÉS/REMBOURSÉS --------------------------------------------------->
@@ -114,14 +112,12 @@
                     <div class="info-box-large-header">
                         <div class="info-box-icon-group">
                             <i class="fa-solid fa-sack-dollar info-box-icon"></i>
-                        </div>
+                        </div> 
                         <h2 class="info-box-title">Montant total prêté</h2>
                     </div>
-                    <p class="info-box-number-large">1 247 500 $</p>
+                    <!-- contenu inséré via JavaScript -->
+                    <p class="info-box-number-large">0 $</p>
                     <div class="info-box-details">
-                        <span class="detail-item">
-                            <i class="fa-solid fa-calendar"></i> Ce mois : 95 000 $
-                        </span>
                     </div>
                 </div>
                 
@@ -133,18 +129,16 @@
                         </div>
                         <h2 class="info-box-title">Montant total remboursé</h2>
                     </div>
-                    <p class="info-box-number-large">1 089 200 $</p>
+                    <!-- contenu inséré via JavaScript -->
+                    <p class="info-box-number-large">0 $</p>
                     <div class="info-box-details">
-                        <span class="detail-item">
-                            <i class="fa-solid fa-calendar"></i> Ce mois : 78 500 $
-                        </span>
                     </div>
                 </div>
             </div>
 
 <!-------------------------------------- TABLEAU DERNIERS PRÊTS --------------------------------------------------->
             <div class="table-section noto-sans-0">
-                <div class="table-container">
+                <div class="table-container" id="clients-en-retard">
                     <!------------------- tableau des clients en retard ------------------------------------------>
                     <table class="loans-table">
                         <div class="section-table-title">
@@ -161,101 +155,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <!-- à insérer en javascript (données pour tester) -->
-                                    <!--------------------- premier client en retard ------------------------------------------>
-                                    <div class="client-info">
-                                        <div class="client-avatar">LJ</div> <!--avatar avec initiales -->
-                                        <div class="client-details">
-                                            <span class="client-name">Lorry James Encarnacion</span>
-                                            <span class="client-phone">514-123-4567</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="amount">2 000 $</td>
-                                <td class="date">10/10/2025</td>
-                                <td>
-                                    <span class="nb-jours">39 jours</span>
-                                </td>
-                                <td><span class="status-badge status-critical">Critique</span></td> <!-- badge de statut avec couleur critique -->
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-call" title="Appeler">
-                                            <i class="fa-solid fa-phone"></i><!-- icône de téléphone -->
-                                        </button>
-                                        <button class="btn-icon btn-email" title="Envoyer un email">
-                                            <i class="fa-solid fa-envelope"></i><!-- icône d'enveloppe -->
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <!--------------------- deuxième client en retard ------------------------------------------>
-                                    <div class="client-info">
-                                        <div class="client-avatar">AD</div> <!-- initiales de l'avatar -->
-                                        <div class="client-details">
-                                            <span class="client-name">Andy Douangpanya</span>
-                                            <span class="client-phone">514-336-9876</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="amount">1 200 $</td>
-                                <td class="date">28/10/2025</td>
-                                <td>
-                                    <span class="nb-jours">21 jours</span>
-                                </td>
-                                <td><span class="status-badge status-warning">Attention</span></td> <!-- badge de statut avec couleur d'avertissement -->
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-call" title="Appeler">
-                                            <i class="fa-solid fa-phone"></i> <!-- icône de téléphone -->
-                                        </button>
-                                        <button class="btn-icon btn-email" title="Envoyer un email">
-                                            <i class="fa-solid fa-envelope"></i> <!-- icône d'enveloppe -->
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <!--------------------- troisième client en retard ------------------------------------------>
-                                    <div class="client-info">
-                                        <div class="client-avatar">MAF</div> <!-- initiales de l'avatar -->
-                                        <div class="client-details">
-                                            <span class="client-name">Marilou Aiko Fukuyama</span>
-                                            <span class="client-phone">514-645-6789</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="amount">3 500 $</td>
-                                <td class="date">05/11/2025</td>
-                                <td>
-                                    <span class="nb-jours">13 jours</span>
-                                </td>
-                                <td><span class="status-badge status-moderate">Modéré</span></td> <!-- badge de statut avec couleur modérée -->
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-call" title="Appeler">
-                                            <i class="fa-solid fa-phone"></i> <!-- icône de téléphone -->
-                                        </button>
-                                        <button class="btn-icon btn-email" title="Envoyer un email">
-                                            <i class="fa-solid fa-envelope"></i> <!-- icône d'enveloppe -->
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <!-- Les clients en retard seront chargés dynamiquement via JavaScript -->
                         </tbody>
                     </table> <!-- fin tableau des clients en retard -->
                 </div>
             </div>
-
+        </div>
+    </main>
 
 
 
 <!------------------------------------ JAVASCRIPT --------------------------------------------------->
-<script src="script.js"></script>
 <script src="script_index.js"></script>
 </body>
 </html>

@@ -136,7 +136,7 @@
             </div>
 
             <!-- Tableau des prêts -->
-            <table class="table is-fullwidth is-striped is-hoverable" id="pretsTable"> <!-- is-fullwidth pour que le tableau prenne toute la largeur disponible, is-striped pour des lignes alternées, is-hoverable pour effet au survol -->
+            <table class="table is-fullwidth" id="pretsTable"> <!-- is-fullwidth pour que le tableau prenne toute la largeur disponible -->
                 <thead>
                     <tr>
                         <th>Client</th>
@@ -155,8 +155,8 @@
             
             <!-- Pagination -->
             <nav class="pagination is-centered" role="navigation" aria-label="pagination"><!-- is-centered pour centrer la pagination -->
-                <a class="pagination-previous has-background-link" id="prevPage">Précédent</a>
-                <a class="pagination-next has-background-link" id="nextPage">Suivant</a>
+                <a class="pagination-previous has-background-link" id="prevPage">Précédent</a> <!-- has-background-link pour le style du bouton -->
+                <a class="pagination-next has-background-link" id="nextPage">Suivant</a> <!-- has-background-link pour le style du bouton -->
                 <ul class="pagination-list" id="paginationList">
                     <!-- Les numéros de page seront ajoutés ici via JavaScript -->
                 </ul>
@@ -165,7 +165,7 @@
 
     </main>
 
-<script scr="script.js"></script>
+<!------------------------------------ SCRIPTS --------------------------------------------------->
 <script src="script_prets.js"></script>
 </body>
 </html>

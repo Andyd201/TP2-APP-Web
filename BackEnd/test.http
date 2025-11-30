@@ -1,6 +1,6 @@
 curl -X POST http://localhost:3000/addClients \
      -H "Content-Type: application/json" \
-     -d '{"prenom": "John", "nom": "Doe", "telephone": "41421121", "email": "asndy@sam.com", "adresse": "123 Main St"}'
+     -d '{"Prenom": "John", "nom": "Doe", "Telephone": "41421121", "email": "asndy@sam.com", "adresse": "123 Main St"}'
 
 curl http://localhost:3000/allClients
 
@@ -26,3 +26,10 @@ curl -X PUT http://localhost:3000/updatePret/1 \
 curl -X POST http://localhost:3000/addClients `
      -H "Content-Type: application/json" `
      -d '{"prenom": "John", "nom": "Doe", "telephone": "41421121", "email": "asndy@sam.com", "adresse": "123 Main St"}'
+
+
+### Migrer les dates des prêts existants
+POST http://localhost:3000/migrerDatesPretsExistants
+Content-Type: application/json
+
+{}

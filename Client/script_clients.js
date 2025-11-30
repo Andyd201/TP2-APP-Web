@@ -45,7 +45,7 @@ function displayClients(list) {
                 <td>${c.email}</td>
                 <td>${c.adresse}</td>
                 <td>
-                    <button class="button is-danger is-small" onclick="deleteClient(${c.id})">
+                    <button class="button is-danger is-small" style="border-radius:0.4em; font-weight:700; font-size:0.7em" onclick="deleteClient(${c.id})">
                         Supprimer
                     </button>
                 </td>

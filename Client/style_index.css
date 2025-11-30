@@ -205,10 +205,6 @@
     transition: height 0.5s ease; /* Transition pour l'animation */
 }
 
-/* Effet au survol des encadrés larges */
-.info-box-large:hover {
-    background-color: rgb(29, 43, 67); /* Couleur de fond au survol */
-}
 
 
 /* Couleurs pour la ligne colorée des encadrés larges */
@@ -229,10 +225,6 @@
 .info-box-large .info-box-icon-group {
     width: 5em; /* Largeur de l'icône */
     height: 5em; /* Hauteur de l'icône */
-}
-
-.info-box-large:hover .info-box-icon {
-    color: rgb(45, 45, 148); /* Couleur de l'icône */
 }
 
 /* Titre de l'encadré large */
@@ -318,20 +310,20 @@
 }
 
 /* Contenu textuel de la notification */
-.pastille-contenu {
+.pastille-rouge .pastille-contenu {
     display: flex; /* Utilisation de flexbox */
     align-items: baseline; /* Alignement sur la ligne de base */
     gap: 0.4em; /* Espacement entre les éléments */
 }
 
 /* Nombre de prêts en retard */
-.pastille-nombre {
+.pastille-rouge .pastille-nombre {
     font-size: 1.1em; /* Taille du nombre */
     font-weight: 700; /* Gras */
 }
 
 /* Texte "prêts en retard" */
-.pastille-texte {
+.pastille-rouge .pastille-texte {
     font-size: 1.1em; /* Taille du texte */
 }
 
@@ -353,7 +345,7 @@
     margin: 3em auto; /* Marges */
     margin-left: 22em; /* Marge gauche */
     margin-right: 5em; /* Marge droite */
-    margin-top: 1em;
+    margin-top: 1em; /* Marge supérieure */
 }
 
 /* Conteneur du tableau */
@@ -656,3 +648,7 @@
     }
 }
 
+/* Décalage pour le scroll vers les clients en retard */
+#clients-en-retard {
+    scroll-margin-top: 350px; /* Décalage pour éviter que le contenu soit caché sous un en-tête fixe */
+}

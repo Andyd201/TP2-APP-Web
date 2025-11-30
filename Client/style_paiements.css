@@ -327,10 +327,13 @@ body {
     border-color: rgb(147, 112, 219);
 }
 
+
 /* Tableau des paiements */
 .paiements-table {
     width: 100%;
     border-collapse: collapse;
+    border-radius: 0.5em;
+    overflow: hidden;
 }
 
 /* En-têtes du tableau */
@@ -396,7 +399,7 @@ body {
 
 /* Bouton de suppression */
 .delete-btn {
-    background-color: #f56565;
+    background-color: #f14668;
     color: white;
     border: none;
     padding: 0.4em 0.8em;
@@ -406,17 +409,14 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Hover sur le bouton de suppression */
-.delete-btn:hover {
-    background-color: #c53030;
-}
+
 
 /*=========================================== POLICE NOTO SANS ===========================================*/
 
 .noto-sans-0 {
     font-family: "Noto Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 380;
+    font-weight: 600;
     font-style: normal;
     font-variation-settings: "wdth" 100;
 }
