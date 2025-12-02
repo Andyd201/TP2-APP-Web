@@ -67,42 +67,36 @@
 <!------------------------------------ ENCADRÉS PRÊTS ACTIFS/REMBOURSÉS/EN RETARD --------------------------------------------------->
             <div class="info-boxes-container noto-sans-0">
                 <!-------- prêts actifs ------------------------------------------>
-                <div class="info-box info-box-actif">
+                <div class="info-box info-box-actif" data-href="prets.html">
                     <div class="info-box-icon-group">
-                        <i class="fa-solid fa-file-contract info-box-icon"></i>
+                        <i class="fa-solid fa-file-invoice-dollar info-box-icon"></i>
                     </div>
-                    <a href="prets.html" style="text-decoration: none;"> <!-- lien vers la page des prêts -->
-                        <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
-                            <h2 class="info-box-title">Prêts actifs</h2>
-                            <p class="info-box-number">0</p>
-                        </div>
-                    </a>
+                    <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
+                        <h2 class="info-box-title">Prêts actifs</h2>
+                        <p class="info-box-number">0</p>
+                    </div>
                 </div>
 
-                <!-------- prêts remboursés ------------------------------------------------------>
-                <div class="info-box info-box-rembourse">
+                <!-------- prêts remboursés ---------------------------------------------->
+                <div class="info-box info-box-rembourse" data-href="paiements.html">
                     <div class="info-box-icon-group">
                         <i class="fa-solid fa-circle-check info-box-icon"></i>
                     </div>
-                    <a href="paiements.html" style="text-decoration: none;"> <!-- lien vers la page des paiements -->
-                        <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
-                            <h2 class="info-box-title">Prêts remboursés</h2>
-                            <p class="info-box-number">0</p>
-                        </div>
-                    </a>
+                    <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
+                        <h2 class="info-box-title">Prêts remboursés</h2>
+                        <p class="info-box-number">0</p>
+                    </div>
                 </div>
                 
                 <!-------- prêts en retard ------------------------------------------------->
-                <div class="info-box info-box-retard">
+                <div class="info-box info-box-retard" data-href="#clients-en-retard">
                     <div class="info-box-icon-group">
                         <i class="fa-solid fa-clock info-box-icon"></i>
                     </div>
-                    <a href="#clients-en-retard" style="text-decoration: none;"> <!-- lien vers la section des clients en retard -->
-                        <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
-                            <h2 class="info-box-title">Prêts en retard</h2>
-                            <p class="info-box-number">0</p>
-                        </div>
-                    </a>
+                    <div class="info-box-content"> <!-- contenu inséré via JavaScript -->
+                        <h2 class="info-box-title">Prêts en retard</h2>
+                        <p class="info-box-number">0</p>
+                    </div>
                 </div>
             </div>
 <!-------------------------------------- ENCADRÉS NOMBRE TOTAL PRÊTÉS/REMBOURSÉS --------------------------------------------------->
@@ -138,14 +132,14 @@
 
 <!-------------------------------------- TABLEAU DERNIERS PRÊTS --------------------------------------------------->
             <div class="table-section noto-sans-0">
-                <div class="table-container" id="clients-en-retard">
+                <div class="table-container">
                     <!------------------- tableau des clients en retard ------------------------------------------>
                     <table class="loans-table">
                         <div class="section-table-title">
                             <h3 class="table-title">Liste des clients en retard</h3>
                         </div>
                         <thead>
-                            <tr>
+                            <tr id="clients-en-retard">
                                 <th>Client</th>
                                 <th>Montant dû</th>
                                 <th>Date d'échéance</th>

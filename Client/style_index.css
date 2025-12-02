@@ -51,8 +51,7 @@
 
 /* Style de chaque encadré */
 .info-box {
-    background-color: rgba(147, 112, 219, 0.4); /* Couleur de fond avec transparence */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Ombre portée */
+    background-color: white !important; /* Couleur de fond avec transparence */
     border-radius: 0.5em; /* Bords arrondis */
     padding: 1.8em; /* Espacement intérieur */
     flex: 1; /* Prend une part égale de l'espace disponible */
@@ -61,40 +60,20 @@
     display: flex; /* Flexbox pour aligner le contenu */
     align-items: center; /* Alignement vertical */
     gap: 1.5em; /* Espacement entre les éléments */
-    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Transition pour l'animation */
     position: relative; /* Position relative pour les pseudo-éléments */
     overflow: hidden; /* Masquer le débordement */
     cursor: pointer; /* Curseur en forme de main */
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
 }
 
-/* Effet au survol de l'encadré */
 .info-box:hover {
-    background-color: rgb(29, 43, 67); /* Couleur de fond au survol */
-}
-
-
-/* Ligne colorée en haut de l'encadré */
-.info-box::before {
-    content: ''; /* Nécessaire pour afficher la ligne colorée */
-    position: absolute; /* Position absolue pour le placer en haut */
-    top: 0; /* Position en haut */
-    left: 0; /* Position à gauche */
-    width: 100%; /* Largeur totale */
-    height: 4px; /* Hauteur de la ligne */
-    transition: height 0.3s ease; /* Transition pour l'animation */
-}
-
-/* Couleurs pour la ligne colorée */
-.info-box::before {
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: translateY(-3px); /* Légère élévation au survol */
+    background-color: rgb(224, 214, 233) !important;
 }
 
 
 /* Groupe d'icônes */
 .info-box-icon-group {
-    width: 55px; /* Largeur de l'icône */
-    height: 55px; /* Hauteur de l'icône */
-    border-radius: 50%; /* Forme circulaire */
     display: flex; /* Utilisation de flexbox */
     align-items: center; /* Alignement vertical */
     justify-content: center; /* Alignement horizontal */
@@ -103,14 +82,32 @@
 
 /* Icône dans l'encadré */
 .info-box-icon {
-    font-size: 2em; /* Taille de l'icône */
-    color: rgb(179, 181, 183); /* Couleur de l'icône */
+    font-size: 1.5em;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    flex-shrink: 0;
 }
 
-/* Effet au survol de l'icône */
-.info-box:hover .info-box-icon {
-    color: rgb(45, 45, 148); /* Couleur de l'icône au survol */
+/* Icône pour les prêts actifs */
+.info-box-actif .info-box-icon {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
 }
+
+/* Icône pour les prêts remboursés */
+.info-box-rembourse .info-box-icon {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+}
+
+/* Icône pour les prêts en retard */
+.info-box-retard .info-box-icon {
+    background: linear-gradient(135deg, #f56565, #c53030);
+}
+
 
 /* Contenu de l'encadré */
 .info-box-content {
@@ -121,7 +118,7 @@
 .info-box-title {
     font-size: 0.85em; /* Taille de la police */
     font-weight: 600; /* Gras */
-    color: rgb(179, 181, 183); /* Couleur du texte */
+    color: grey; /* Couleur du texte */
     margin: 0; /* Marge */
     margin-bottom: 0.5em; /* Marge inférieure */
     text-transform: uppercase; /* Transformation du texte en majuscules */
@@ -132,40 +129,13 @@
 .info-box-number {
     font-size: 2em; /* Taille de la police */
     font-weight: 700; /* Gras */
-    color: white; /* Couleur du texte */
+    color: black; /* Couleur du texte */
     margin: 0; /* Marge */
     margin-bottom: 0.3em; /* Marge inférieure */
 }
-
-
-
-/* Tendance (positive/négative) */
-.info-box-trend {
-    display: inline-flex; /* Affichage en ligne avec flexbox */
-    align-items: center; /* Alignement vertical */
-    gap: 0.3em; /* Espacement entre les éléments */
-    font-size: 0.8em; /* Taille de la police */
-    font-weight: 600; /* Gras */
-    padding: 0.3em 0.7em; /* Espacement intérieur */
-    border-radius: 20px; /* Bords arrondis */
-}
-
-/* Couleurs pour la tendance (prêts actifs) */
-.info-box-trend.positive {
-    background-color: #d4edda; /* Couleur de fond positive */
-    color: #155724; /* Couleur du texte positive */
-}
-
-/* Couleurs pour la tendance (prêts remboursés) */
-.info-box-trend.negative {
-    background-color: #f8d7da; /* Couleur de fond négative */
-    color: #721c24; /* Couleur du texte négative */
-}
-
-/* Icône dans la tendance */
-.info-box-trend i {
-    font-size: 0.9em; /* Taille de l'icône */
-}
+ .fa-file-contract {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+ }
 
 /*======================================== ENCADRÉS NOMBRE TOTAUX PRÊTS (PRÊTÉS/REMBOURSÉS) ===========================================*/
 
@@ -184,7 +154,7 @@
 
 /* Encadrés larges pour les montants */
 .info-box-large {
-    background-color: rgba(147, 112, 219, 0.4); /* Couleur de fond avec transparence */
+    background-color:white; /* Couleur de fond avec transparence */
     border-radius: 0.5em; /* Bords arrondis */
     padding: 2em; /* Espacement intérieur */
     flex: 1; /* Prend une part égale de l'espace disponible */
@@ -194,23 +164,6 @@
     cursor: pointer; /* Curseur en forme de main */
 }
 
-/* Effet au survol des encadrés larges et ligne colorée */
-.info-box-large::before {
-    content: ''; /* Nécessaire pour afficher la ligne colorée */
-    position: absolute; /* Position absolue pour le placer en haut */
-    top: 0; /* Position en haut */
-    left: 0; /* Position à gauche */
-    width: 100%; /* Largeur complète */
-    height: 4px; /* Hauteur de la ligne */
-    transition: height 0.5s ease; /* Transition pour l'animation */
-}
-
-
-
-/* Couleurs pour la ligne colorée des encadrés larges */
-.info-box-large::before {
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-}
 
 
 /* En-tête de l'encadré large */
@@ -223,8 +176,26 @@
 
 /* Groupe d'icônes dans l'encadré large */
 .info-box-large .info-box-icon-group {
-    width: 5em; /* Largeur de l'icône */
-    height: 5em; /* Hauteur de l'icône */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icône dans l'encadré large */
+.info-box-large .info-box-icon {
+    font-size: 2em;
+    width: 70px;
+    height: 70px;
+}
+
+/* Icône pour montant total prêté */
+.info-box-amount .info-box-icon {
+    background: linear-gradient(135deg, #9370db, #8a2be2);
+}
+
+/* Icône pour montant remboursé */
+.info-box-repaid .info-box-icon {
+    background: linear-gradient(135deg, #48bb78, #38a169);
 }
 
 /* Titre de l'encadré large */
@@ -237,20 +208,14 @@
 .info-box-number-large {
     font-size: 2.5em; /* Taille de la police */
     font-weight: 700; /* Gras */
-    background-color: white; /* Couleur de fond blanche */
-    -webkit-background-clip: text; /* Clip de fond pour le texte */
-    -webkit-text-fill-color: transparent; /* Remplissage du texte transparent */
-    background-clip: text; /* Clip de fond pour le texte */
+    color: #2d3748; /* Couleur du texte */
     margin: 0; /* Marge */
     margin-bottom: 1em; /* Marge inférieure */
 }
 
 /* Nombre remboursé dans l'encadré */
 .info-box-repaid .info-box-number-large {
-    background: white; /* Couleur de fond blanche */
-    -webkit-background-clip: text; /* Clip de fond pour le texte */
-    -webkit-text-fill-color: transparent; /* Remplissage du texte transparent */
-    background-clip: text; /* Clip de fond pour le texte */
+    color: #2d3748; /* Couleur du texte */
 }
 
 /* Détails supplémentaires */
@@ -259,7 +224,7 @@
     align-items: center; /* Alignement vertical */
     gap: 1em;   /* Espacement entre les éléments */
     padding-top: 1em; /* Espacement supérieur */
-    border-top: 1px solid #f5f5f5; /* Bordure supérieure */
+    border-top: 1px solid grey; /* Bordure supérieure */
 }
 
 /* Détail individuel */
@@ -289,14 +254,15 @@
     border-radius: 2em;     /* Bordure arrondie */
     font-weight: 600; /* Poids de la police */
     cursor: pointer; /* Curseur pointeur */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
     margin-right: 1em; /* Marge droite */
     border: 2px solid rgb(179, 22, 38); /* Bordure rouge */
 }
 
 /* Effet au survol de la pastille rouge */
 .pastille-rouge:hover {
-    color:#7a7a7a; /* Couleur du texte au survol */
+    color:#bbbaba; /* Couleur du texte au survol */
+    transform: translateY(-3px); /* Légère élévation au survol */
 }
 
 /* Icône d'exclamation dans la pastille */
@@ -306,7 +272,7 @@
 }
 
 .pastille-rouge:hover .exclamation-icon{
-    color: #7a7a7a; /* Couleur de l'icône au survol */
+    color: #bbbaba; /* Couleur de l'icône au survol */
 }
 
 /* Contenu textuel de la notification */
@@ -332,10 +298,11 @@
 
 /* titre du tableau */
 .table-title {
-    color: white; /* Couleur du texte */
+    color: rgb(16, 29, 62); /* Couleur du texte */
     font-size: 1.5em; /* Taille de la police */
     margin-bottom: 1em; /* Marge inférieure */
     padding: 1em;
+    font-weight: 600;
 }
 
 /* Conteneur de la section du tableau */
@@ -350,29 +317,17 @@
 
 /* Conteneur du tableau */
 .table-container {
-    background-color: rgba(147, 112, 219, 0.4) !important; /* Couleur de fond avec transparence (!important pour forcer la priorité) */
+    background-color: white; /* Couleur de fond avec transparence (!important pour forcer la priorité) */
     border-radius: 0.5em; /* Bordure arrondie */
     overflow: hidden; /* Masquer le débordement */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
     position: relative; /* Position relative */
 }
 
-/*style pour la ligne colorée en haut du tableau */
-.table-container::before {
-    content: ''; /* Contenu vide pour créer une ligne colorée */
-    position: absolute; /* Position absolue pour superposer la ligne colorée */
-    top: 0; /* Position en haut */
-    left: 0; /* Position à gauche */
-    width: 100%; /* Largeur complète */
-    height: 4px; /* Hauteur de la ligne */
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); /* Dégradé de couleur */
-    z-index: 1; /* Position au-dessus des autres éléments */
-}
 
 /* Style dans le tableau */
 .loans-table thead {
-    color: white; /* Couleur du texte */
-    border-bottom: 1px solid #f5f5f5;   /* Bordure inférieure */
+    border-bottom: 1px solid grey;   /* Bordure inférieure */
 }
 
 /* Style des en-têtes de colonnes */
@@ -381,18 +336,19 @@
     text-align: left; /* Alignement du texte à gauche */
     font-weight: 600; /* Poids de la police */
     font-size: 1em; /* Taille de la police */
-    color:rgb(179, 181, 183); /* Couleur du texte */
+
+    color: rgb(16, 29, 62); /* Couleur du texte */
 }
 
 /* Style des lignes du corps du tableau */
 .loans-table td {
     padding: 1.2em 1em; /* Espacement interne */
-    border-bottom: 0.3px solid #f5f5f5; /* Bordure inférieure */
+    border-bottom: 0.1px solid grey; /* Bordure inférieure */
 }
 
 /* Effet au survol des lignes du tableau */
 .loans-table tbody tr:hover {
-    background-color: rgb(29, 43, 67) !important; /* Couleur de fond au survol */
+    background-color: rgba(147, 112, 219, 0.15) !important; /* Couleur de fond au survol */
 }
 
 /* Informations du client dans le tableau */
@@ -407,19 +363,19 @@
     display: flex; /* Utilisation de flexbox */
     flex-direction: column; /* Direction en colonne */
     gap: 0.3em; /* Espacement entre les éléments */
-    color: white !important; /* Couleur du texte */
+    color: black !important; /* Couleur du texte */
 }
 
 /* Nom du client */
 .client-name {
     font-weight: 600; /* Poids de la police */
-    color: white; /* Couleur du texte */
+    color: black; /* Couleur du texte */
 }
 
 /* Nombre de jours */
 .nb-jours {
     font-weight: 500; /* Poids de la police */
-    color: white !important; /* Couleur du texte */
+    color: black !important; /* Couleur du texte */
 }
 
 /* Numéro de téléphone du client */
@@ -431,13 +387,13 @@
 /* Montant */
 .amount {
     font-weight: 700; /* Poids de la police */
-    color: white !important; /* Couleur du texte */
+    color: black !important; /* Couleur du texte */
 }
 
 /* Date */
 .date {
     font-weight: 500; /* Poids de la police */
-    color: white !important; /* Couleur du texte */
+    color: black !important; /* Couleur du texte */
 }
 
 /* Avatar du client */
@@ -453,11 +409,6 @@
     font-weight: 600; /* Poids de la police */
     font-size: 0.85em; /* Taille de la police */
     flex-shrink: 0; /* Ne pas réduire la taille */
-}
-
-/* Effet au survol de l'avatar du client */
-.loans-table tbody tr:hover .client-avatar {
-    background-color: rgb(45, 45, 148); /* Couleur de fond au survol */
 }
 
 /*pastille de statut*/
@@ -645,6 +596,106 @@
         height: 28px; /* Hauteur de l'avatar */
         font-size: 0.75em; /* Taille de la police */
 
+    }
+    
+    /* Boutons d'action plus petits sur mobile */
+    .btn-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8em;
+    }
+    
+    /* Pastille rouge plus compacte */
+    .pastille-rouge {
+        padding: 0.25em 0.8em;
+        font-size: 0.9em;
+    }
+}
+
+/* Très petits mobiles - moins de 400px */
+@media screen and (max-width: 400px) {
+    .dashboard-title {
+        font-size: 1.2em;
+        margin-left: 0.5em;
+    }
+    
+    .dashboard-title-container {
+        padding: 0.8em 0.5em;
+    }
+    
+    .info-box {
+        padding: 0.8em;
+        max-width: 98%;
+        gap: 1em;
+    }
+    
+    .info-box-icon {
+        font-size: 1.2em;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .info-box-title {
+        font-size: 0.75em;
+    }
+    
+    .info-box-number {
+        font-size: 1.5em;
+    }
+    
+    .info-box-large {
+        padding: 1em;
+    }
+    
+    .info-box-large .info-box-icon {
+        font-size: 1.5em;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .info-box-number-large {
+        font-size: 1.8em;
+    }
+    
+    .table-title {
+        font-size: 1em;
+        padding: 0.5em;
+    }
+    
+    .loans-table {
+        font-size: 0.7em;
+    }
+    
+    .loans-table th,
+    .loans-table td {
+        padding: 0.6em 0.3em;
+    }
+    
+    .client-avatar {
+        width: 25px;
+        height: 25px;
+        font-size: 0.7em;
+    }
+    
+    .btn-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75em;
+    }
+    
+    .status-badge {
+        padding: 0.3em 0.7em;
+        font-size: 0.75em;
+    }
+    
+    .pastille-rouge {
+        padding: 0.2em 0.6em;
+        font-size: 0.85em;
+    }
+    
+    .pastille-nombre,
+    .pastille-texte {
+        font-size: 0.9em;
     }
 }
 

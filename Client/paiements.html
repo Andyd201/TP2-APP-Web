@@ -79,6 +79,19 @@
                                 <input type="date" id="datePaiement" class="form-input" required>
                             </div>
 
+                            <!-- ajout mode de paiement-->
+                            <div class="form-group">
+                                <label class="form-label">Mode de paiement *</label>
+                                <select id="modePaiement" class="form-input" required>
+                                    <option value="">-- Sélectionner un mode --</option>
+                                    <option value="Espèces">Espèces</option>
+                                    <option value="Carte bancaire">Carte bancaire</option>
+                                    <option value="Chèque">Chèque</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label">Statut *</label>
                                 <select id="statut" class="form-input" required>
@@ -167,7 +180,8 @@
                                 <th>ID Prêt</th>
                                 <th>Client</th>
                                 <th>Montant</th>
-                                <th>Date de paiement</th>
+                                <th>Date</th>
+                                <th>Mode</th>
                                 <th>Statut</th>
                                 <th>Notes</th>
                                 <th>Action</th>

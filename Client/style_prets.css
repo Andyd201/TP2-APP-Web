@@ -32,6 +32,7 @@
     color: white; /* Couleur du texte */
     margin: 0; /* Marge */
     margin-left: 5.5em; /* Marge gauche */
+    margin-bottom: -0.5em;
 }
 
 /*=============================================== FORMULAIRE AJOUTER PRÊT ===================================*/
@@ -40,48 +41,77 @@
     position: relative; /* Nécessaire pour le positionnement de la ligne colorée */
     background-color: white; /* Couleur de fond blanche */
     border-radius: 8px; /* Bords arrondis */
-    background-color: rgba(147, 112, 219, 0.4); /* Couleur de fond violette claire */
     padding: 2em; /* Espacement interne */
     margin: 2em 5em 4em 23em; /* Marges externes */
     overflow: hidden; /* Cache la ligne qui dépasse */
 }
 
-/* ligne colorée sur le dessus du conteneur du formulaire */
-.prets-content-container::before{
-    content: ''; /* Nécessaire pour afficher la ligne colorée */
-    position: absolute; /* Position absolue pour le placer en haut */
-    top: 0; /* Position en haut */
-    left: 0; /* Position à gauche */
-    width: 100%; /* Largeur totale */
-    height: 4px; /* Hauteur de la ligne */
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    transition: height 0.3s ease; /* Transition pour l'animation */
-    z-index: 1; /* Place la ligne au-dessus du fond */
-}
-
-
+/* Styles du titre du formulaire */
 .section-title {
-    margin-bottom: -10em; /* Espace en dessous du titre de section */
+    margin-bottom: -11em; /* Espace en dessous du titre de section */
 }
 
+/* Styles du titre du formulaire */
 .titre-formulaire {
-    color: white; /* Couleur du texte */
-    font-size: 1.5em;
-    font-weight: 350;
-}
-
-form .field label {
-    color: rgb(179, 181, 183); /* Couleur des labels */
+    color: rgb(10, 18, 38); /* Couleur du texte */
+    font-size: 1.3em; /* Taille de la police */
     font-weight: 600; /* Gras */
 }
 
-form .input, form .select select {
+/* Styles des champs du formulaire */
+form .field label {
+    color: rgb(10, 18, 38); /* Couleur des labels */
+    font-weight: 600; /* Gras */
+}
+
+/* Styles des inputs et selects du formulaire */
+form .input, form .select select, form select {
     background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent pour les champs */
-    border: 1px solid rgba(200, 200, 200, 0.5); /* Bordure grise claire */
+    border: 1px solid rgb(207, 204, 204); /* Bordure grise claire */
     box-shadow: none; /* Pas d'ombre */
     color: rgb(50, 50, 50); /* Couleur du texte */
     font-weight: 500; /* Poids de la police */
+    border-radius: 0.4em; /* Bords arrondis */
+    width: 100%; /* Largeur complète */
+    padding: 0.7em 0.8em; /* Espacement interne */
+    font-family: inherit; /* Police héritée */
+    font-size: 0.95em; /* Taille de police */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition */
 }
+
+/* Style au focus pour les inputs et selects */
+form .input:focus,
+form .select select:focus,
+form select:focus,
+.input:focus,
+.select select:focus {
+    border-color: rgb(147, 112, 219) !important; /* Couleur de la bordure au focus */
+    box-shadow: 0 0 0 0.125em rgba(147, 112, 219, 0.25) !important; /* Ombre violette au focus */
+    outline: none; /* Pas de contour par défaut */
+}
+
+/* Style du bouton d'ajout de prêt */
+.form-pret-button {
+    background: linear-gradient(135deg, rgb(147, 112, 219), rgb(138, 43, 226)); /* Dégradé violet */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 0.8em 2em; /* Espacement interne */
+    border-radius: 0.4em; /* Bords arrondis */
+    font-weight: 600; /* Gras */
+    font-size: 0.95em; /* Taille de police */
+    cursor: pointer; /* Curseur pointeur */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition */
+    margin-top: 1em; /* Marge supérieure */
+   
+}
+
+/* Effet au survol du bouton */
+.form-pret-button:hover {
+    transform: translateY(-2px); /* Déplacement vers le haut */
+    box-shadow: 0 6px 12px rgba(147, 112, 219, 0.3); /* Ombre violette */
+}
+
+
 
 /*============================================ TABLEAU LISTE DES PRÊTS ===================================*/
 
@@ -89,60 +119,100 @@ form .input, form .select select {
 .prets-list-container {
     position: relative; /* Nécessaire pour le positionnement de la ligne colorée */
     border-radius: 8px; /* Bords arrondis */
-    background-color: rgba(147, 112, 219, 0.4); /* Couleur de fond violette claire */
+    background-color: white; /* Couleur de fond violette claire */
     padding: 2em; /* Espacement interne */
     margin: 2em 5em 4em 23em; /* Marges externes */
-    overflow: hidden; /* Cache la ligne qui dépasse */
+    overflow: visible; /* Permet le scroll horizontal */
     margin-top: -2em;
 }
 
-/* ligne colorée sur le dessus du conteneur du formulaire */
-.prets-list-container::before{
-    content: ''; /* Nécessaire pour afficher la ligne colorée */
-    position: absolute; /* Position absolue pour le placer en haut */
-    top: 0; /* Position en haut */
-    left: 0; /* Position à gauche */
-    width: 100%; /* Largeur totale */
-    height: 4px; /* Hauteur de la ligne */
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    z-index: 1; /* Place la ligne au-dessus du fond */
+/* Wrapper pour le scroll horizontal du tableau */
+.table-wrapper {
+    overflow-x: auto; /* Scroll horizontal */
+    margin: 1em 0;
+}
+
+.prets-list-container th {
+    color: white; /* Couleur du texte des en-têtes */
+    font-weight: 600; /* Gras */
+    padding: 0.8em; /* Espacement interne */
+    text-align: left; /* Alignement à gauche */
+    white-space: nowrap; /* Empêche le retour à la ligne */
+}
+
+.prets-list-container td {
+    white-space: nowrap; /* Empêche le retour à la ligne */
+    padding: 0.75em 0.8em; /* Espacement interne */
 }
 
 /* Styles du tableau des prêts */
 #pretsTable {
     width: 100%; /* Largeur totale */
     border-collapse: collapse; /* Fusion des bordures */
-    background-color: (255, 255, 255, 0.8); /* Fond blanc semi-transparent pour le tableau */
     border-radius: 8px; /* Bords arrondis */
     overflow: hidden; /* Cache les débordements */
+    min-width: 1200px; /* Largeur minimale pour éviter la compression */
 }
 
 #pretsTable thead {
-    background-color: rgba(200, 200, 200, 0.5); /* Couleur de fond de l'en-tête */
+    background-color: rgb(10, 18, 38); /* Couleur de fond de l'en-tête */
     color: white; /* Couleur du texte de l'en-tête */
 }
 
-#pretsTable tr:hover td{
-    background-color: rgba(147, 112, 219, 0.2); /* Couleur de fond au survol */
+#pretsTable th {
+    color: white !important; /* Couleur du texte des en-têtes */
+    font-size: 0.9em; /* Taille de police réduite */
 }
+
+#pretsTable td {
+    font-size: 0.9em; /* Taille de police réduite */
+}
+
+
 
 /* Styles des en-têtes du tableau */
 .titre-liste-prets {
-    font-size: 1.5em; /* Taille de la police */
-    font-weight: 350; /* Gras */
-    color: white; /* Couleur du texte */
+    font-size: 1.4em; /* Taille de la police */
+    font-weight: 600; /* Gras */
     margin-bottom: 9.8em; /* Espace en dessous du titre */
 }
 
 /* Styles des boutons de pagination */
 #prevPage, #nextPage {
+   background: linear-gradient(135deg, rgb(147, 112, 219), rgb(138, 43, 226)); /* Dégradé violet */
     color: white; /* Couleur du texte */
     border: none; /* Pas de bordure */
-    padding: 0.5em 1em; /* Espacement interne */
-    margin: 0.5em; /* Marge */
-    border-radius: 4px; /* Bords arrondis */
+    padding: 0.8em 2em; /* Espacement interne */
+    border-radius: 0.4em; /* Bords arrondis */
+    font-weight: 600; /* Gras */
+    font-size: 0.95em; /* Taille de police */
     cursor: pointer; /* Curseur pointeur */
-    font-weight: 500; /* Poids de la police */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition */
+    margin-top: 1em; /* Marge supérieure */
+}
+
+#prevPage:hover, #nextPage:hover {
+    transform: translateY(-2px); /* Déplacement vers le haut */
+    box-shadow: 0 6px 12px rgba(147, 112, 219, 0.3);   /* Ombre violette */
+}
+
+/* Styles des numéros de page */
+.pagination-link {
+    border-color: rgb(147, 112, 219); /* Couleur de la bordure */
+    color: rgb(147, 112, 219); /* Couleur du texte */
+}
+
+/* Hover sur les numéros de page */
+.pagination-link:hover {
+    border-color: rgb(138, 43, 226); /* Couleur de la bordure au survol */
+    color: rgb(138, 43, 226); /* Couleur du texte au survol */
+}
+
+/* Style pour la page courante */
+.pagination-link.is-current {
+    background-color: rgb(147, 112, 219) !important; /* Couleur de fond pour la page courante */
+    border-color: rgb(147, 112, 219) !important;    /* Couleur de la bordure pour la page courante */
+    color: white !important; /* Couleur du texte pour la page courante */
 }
 
 /* Styles de l'input de recherche */
@@ -152,6 +222,7 @@ form .input, form .select select {
     background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
     color: rgb(50, 50, 50); /* Couleur du texte */
     font-weight: 500; /* Poids de la police */
+    border-radius: 0.4em; /* Bords arrondis */
     
 }
 
@@ -161,5 +232,224 @@ form .input, form .select select {
 }
 
 
+/*============================================ MEDIA QUERIES - RESPONSIVE ===================================*/
+
+/* Tablettes (écrans moyens) - 768px à 1024px */
+@media screen and (max-width: 1024px) {
+   
+    /* titre principal */
+    .prets-title {
+        font-size: 1.8em; /* Taille réduite du titre */
+        margin-left: 3em; /* Marge gauche réduite */
+    }
+
+   /* Conteneur du titre principal */
+    .prets-title-container {
+        margin-left: 8em; /* Marge gauche réduite */
+        margin-right: 2em; /* Marge droite réduite */
+    }
+    /* Conteneur du formulaire et de la liste des prêts */
+    .prets-content-container,
+    .prets-list-container {
+        margin: 2em 3em 3em 18em;   /* Marges réduites */
+        padding: 1.5em; /* Padding réduit */
+    }
+
+    /* Titre du formulaire et de la liste des prêts */
+    #pretsTable {
+        min-width: 1000px; /* Largeur minimale réduite */
+    }
+
+    /* Titre du formulaire et de la liste des prêts */
+    #pretsTable th,
+    #pretsTable td {
+        font-size: 0.85em; /* Taille de police réduite */
+        padding: 0.65em; /* Padding réduit */
+    }
+}
+
+/* Tablettes petites et smartphones en paysage - 600px à 768px */
+@media screen and (max-width: 768px) {
+    /* titre principal */
+    .prets-title {
+        font-size: 1.5em; /* Taille réduite du titre */
+        margin-left: 1em; /* Marge gauche réduite */
+    }
+
+    /* Conteneur du titre principal */
+    .prets-title-container {
+        margin-left: 2em; /* Marge gauche réduite */
+        margin-right: 1em; /* Marge droite réduite */
+        padding-top: 1em; /* Padding supérieur réduit */
+    }
+
+    /* Conteneur du formulaire et de la liste des prêts */
+    .prets-content-container,
+    .prets-list-container {
+        margin: 1.5em 1em 2em 1em; /* Marges réduites */
+        padding: 1.2em; /* Padding réduit */
+    }
+
+    /* Titre du formulaire et de la liste des prêts */
+    .titre-formulaire,
+    .titre-liste-prets {
+        font-size: 1.2em; /* Taille réduite du titre */
+    }
+
+    /* Champs du formulaire */
+    form .field {
+        margin-bottom: 0.8em; /* Espace réduit entre les champs */
+    }
+
+    /* Champs du formulaire */
+    form .input,
+    form .select select,
+    form select {
+        font-size: 0.9em; /* Taille de police réduite */
+        padding: 0.6em; /* Padding réduit */
+    }
+
+    /* Bouton d'ajout de prêt */
+    .form-pret-button,
+    #prevPage,
+    #nextPage {
+        padding: 0.7em 1.5em; /* Padding réduit */
+        font-size: 0.9em; /* Taille de police réduite */
+    }
+
+    /* Titre du formulaire et de la liste des prêts */
+    #pretsTable {
+        min-width: 900px; /* Largeur minimale réduite */
+        font-size: 0.85em;  /* Taille de police réduite */
+    }
+
+    /* Titre du formulaire et de la liste des prêts */
+    #pretsTable th,
+    #pretsTable td {
+        font-size: 0.8em; /* Taille de police réduite */
+        padding: 0.6em 0.5em; /* Padding réduit */
+    }
+
+    /* Wrapper du tableau */
+    .table-wrapper {
+        margin: 0.5em 0; /* Marges réduites */
+    }
+}
+
+/* Smartphones - moins de 600px */
+@media screen and (max-width: 600px) {
+    .prets-title {
+        font-size: 1.3em;
+        margin-left: 0.5em;
+    }
+
+    .prets-title-container {
+        margin-left: 1em;
+        margin-right: 0.5em;
+        padding-top: 0.8em;
+    }
+
+    .prets-content-container,
+    .prets-list-container {
+        margin: 1em 0.5em 1.5em 0.5em;
+        padding: 1em;
+        border-radius: 6px;
+    }
+
+    .titre-formulaire,
+    .titre-liste-prets {
+        font-size: 1.1em;
+    }
+
+    form .field {
+        margin-bottom: 0.7em;
+    }
+
+    form .input,
+    form .select select,
+    form select {
+        font-size: 0.85em;
+        padding: 0.55em;
+    }
+
+    .form-pret-button,
+    #prevPage,
+    #nextPage {
+        padding: 0.6em 1.2em;
+        font-size: 0.85em;
+        width: 100%;
+        margin-top: 0.8em;
+    }
+
+    #pretsTable {
+        min-width: 800px;
+        font-size: 0.8em;
+    }
+
+    #pretsTable th,
+    #pretsTable td {
+        font-size: 0.75em;
+        padding: 0.5em 0.4em;
+    }
+
+    .pagination-link {
+        padding: 0.4em 0.6em;
+        font-size: 0.85em;
+    }
+
+    #searchInput {
+        font-size: 0.9em;
+        padding: 0.6em;
+    }
+}
+
+/* Très petits smartphones - moins de 400px */
+@media screen and (max-width: 400px) {
+    .prets-title {
+        font-size: 1.1em;
+        margin-left: 0.3em;
+    }
+
+    .prets-title-container {
+        margin-left: 0.5em;
+        margin-right: 0.3em;
+    }
+
+    .prets-content-container,
+    .prets-list-container {
+        margin: 0.8em 0.3em 1em 0.3em;
+        padding: 0.8em;
+    }
+
+    .titre-formulaire,
+    .titre-liste-prets {
+        font-size: 1em;
+    }
+
+    form .input,
+    form .select select,
+    form select {
+        font-size: 0.8em;
+        padding: 0.5em;
+    }
+
+    .form-pret-button,
+    #prevPage,
+    #nextPage {
+        padding: 0.5em 1em;
+        font-size: 0.8em;
+    }
+
+    #pretsTable {
+        min-width: 700px;
+        font-size: 0.75em;
+    }
+
+    #pretsTable th,
+    #pretsTable td {
+        font-size: 0.7em;
+        padding: 0.4em 0.3em;
+    }
+}
 
 

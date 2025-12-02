@@ -134,7 +134,7 @@
     border-radius: 2em;     /* Bordure arrondie */
     font-weight: 600; /* Poids de la police */
     cursor: pointer; /* Curseur pointeur */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Transition pour l'animation */
     margin-right: 1em; /* Marge droite */
     margin-top: 3em; /* Marge en haut */
     border: 2px solid white;
@@ -145,6 +145,7 @@
 .pastille-rafraichissement:hover {
     background-color:rgb(179, 181, 183); /* Couleur du texte au survol */
     border-color: rgb(179, 181, 183);
+    transform: translateY(-3px); /* Légère élévation au survol */
 }
 
 /* Icône du refresh dans la pastille */

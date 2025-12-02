@@ -72,6 +72,7 @@ body {
     font-weight: 600;
     color: rgb(16, 29, 62);
     margin: 0 0 1.5em 0;
+    margin-bottom: 2.5em;
 }
 
 /* Ligne de formulaire */
@@ -211,13 +212,21 @@ body {
     box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.1);
 }
 
+/* Wrapper pour le scroll horizontal du tableau */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 1em 0;
+    margin-left: -1.8em;
+}
+
 /* Tableau des clients */
 .clients-table {
     width: 100%;
     border-collapse: collapse;
     border-radius: 0.5em;
     overflow: hidden;
-    margin-left: -1.8em;
+    min-width: 900px; /* Largeur minimale pour éviter la compression */
+    margin-left:2em;
 }
 
 /* En-têtes du tableau */
@@ -234,6 +243,7 @@ body {
     font-size: 0.9em;
     border-bottom: 1px solid rgb(200, 200, 200);
     color: white;
+    white-space: nowrap; /* Empêche le retour à la ligne */
 }
 
 /* Cellules du tableau */
@@ -241,6 +251,7 @@ body {
     padding: 0.8em;
     border-bottom: 1px solid rgb(200, 200, 200);
     color: rgb(50, 50, 50);
+    white-space: nowrap; /* Empêche le retour à la ligne */
 }
 
 /* Lignes alternées */

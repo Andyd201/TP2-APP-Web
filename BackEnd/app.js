@@ -318,7 +318,9 @@ app.get('/allPaiements', async (req, res) => {
 
 app.post('/addPaiement', async (req, res) => {
     try {
-        const { pret_id, montant, datePaiement, statut, notes } = req.body;
+        const { pret_id, montant, datePaiement, modePaiement, statut, notes } = req.body;
+        
+        console.log('Données reçues:', { pret_id, montant, datePaiement, modePaiement, statut, notes });
 
         if (!pret_id || !montant || !datePaiement || !statut) {
             return res.status(400).json({ error: "Champs 'pret_id', 'montant', 'datePaiement', 'statut' obligatoires" });
@@ -328,12 +330,21 @@ app.post('/addPaiement', async (req, res) => {
             pret_id: pret_id,
             montant: montant,
             datePaiement: datePaiement,
+            modePaiement: modePaiement || null,
             statut: statut,
             notes: notes || null
         };
+        
+        console.log('Données à insérer:', nouveauPaiement);
 
         const [id] = await db("Paiements").insert(nouveauPaiement);
         nouveauPaiement.id = id;
+        
+        console.log('Paiement inséré avec ID:', id);
+        
+        // Vérifier ce qui a été réellement inséré
+        const paiementInsere = await db("Paiements").where('id', id).first();
+        console.log('Paiement vérifié dans la DB:', paiementInsere);
         
         // Vérifier si le prêt est complètement remboursé
         if (statut === 'Effectué' || statut === 'effectue') {

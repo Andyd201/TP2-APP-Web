@@ -75,7 +75,7 @@ async function chargerClientsEnRetard() {
             tr.innerHTML = `
                 <td>
                     <div class="client-info">
-                        <div class="client-avatar">${initiales}</div>
+                        <div class="client-avatar has-background-link">${initiales}</div>
                         <div class="client-details">
                             <a href="Clients.html" style="text-decoration: none; color: inherit;"> <!-- Lien vers la page Clients -->
                                 <span class="client-name">${client.Prenom} ${client.nom}</span>
@@ -87,7 +87,7 @@ async function chargerClientsEnRetard() {
                 <td class="amount">${formatMontant(client.montantDu)}</td> <!-- formatMontant pour formater le montant -->
                 <td class="date">${formatDate(client.dateEcheance)}</td> <!-- formatDate pour formater la date -->
                 <td>
-                    <span class="nb-jours">${client.joursRetard} jours</span>
+                    <span class="nb-jours">${client.joursRetard} jour(s)</span>
                 </td>
                 <td><span class="status-badge ${statutClass}">${statutTexte}</span></td> <!-- badge de statut pour indiquer le niveau de retard -->
                 <td>
@@ -164,10 +164,35 @@ boutonPastilleRouge.onclick = () => { // ajout d'un événement onclick
     location.reload(); // rechargement de la page pour actualiser les données
 };
 
+//==================================================== NAVIGATION DES INFO-BOX ==============================================
+
+// Gérer les clics sur les info-box pour la navigation
+function configurerNavigationInfoBox() {
+    const infoBoxes = document.querySelectorAll('.info-box[data-href]'); // sélection de toutes les info-box avec un attribut data-href
+    infoBoxes.forEach(box => { // pour chaque info-box
+        // Navigation au clic
+        box.addEventListener('click', function() { // ajout d'un événement click
+            const href = this.getAttribute('data-href'); // récupération de la valeur de l'attribut data-href
+            if (href.startsWith('#')) { // vient vérifier si le lien est un a
+                // Navigation interne (ancre)
+                const target = document.querySelector(href); // sélection de l'élément cible
+                if (target) { // si l'élément cible existe
+                    target.scrollIntoView({ behavior: 'smooth' }); // faire défiler jusqu'à l'élément cible avec un défilement fluide
+                }
+            } else {
+                // Navigation externe (page)
+                window.location.href = href; // redirection vers la page spécifiée
+            }
+        });
+        
+    });
+}
+
 //==================================================== INITIALISATION ==============================================
 
 // Charger toutes les données au chargement de la page
 document.addEventListener('DOMContentLoaded', () => { // événement déclenché lorsque le contenu du DOM est chargé
     chargerStatistiques(); // charger les statistiques
     chargerClientsEnRetard(); // charger les clients en retard
+    configurerNavigationInfoBox(); // configurer la navigation des info-box
 });

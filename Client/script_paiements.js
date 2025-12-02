@@ -67,12 +67,16 @@ function displayPaiements(paiements) {
     const tbody = document.getElementById('tablePaiements');
     tbody.innerHTML = '';
 
-    if (paiements.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2em;">Aucun paiement enregistré</td></tr>';
+    console.log('Paiements à afficher:', paiements);
+
+    if (!paiements.length) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 2em;">Aucun paiement enregistré</td></tr>';
         return;
     }
 
     paiements.forEach(paiement => {
+        console.log('Paiement individuel:', paiement);
+        console.log('  → modePaiement:', paiement.modePaiement, '(type:', typeof paiement.modePaiement, ')');
         const pret = allPrets.find(p => p.id === paiement.pret_id);
         const client = allClients.find(c => c.id === pret?.client_id);
         const clientName = client ? `${client.Prenom} ${client.nom}` : 'Inconnu';
@@ -86,6 +90,7 @@ function displayPaiements(paiements) {
             <td>${clientName}</td>
             <td>${paiement.montant.toFixed(2)}$</td>
             <td>${new Date(paiement.datePaiement).toLocaleDateString('fr-FR')}</td>
+            <td>${paiement.modePaiement || '-'}</td>
             <td>${statusBadge}</td>
             <td>${paiement.notes || '-'}</td>
             <td><button class="delete-btn is-danger" style="border-radius:0.4em; font-weight:700; font-size:0.75em" onclick="deletePaiement(${paiement.id})">Supprimer</button></td>
@@ -121,25 +126,33 @@ async function handleFormSubmit(e) {
     const pret_id = document.getElementById('pret_id').value;
     const montant = parseFloat(document.getElementById('montant').value);
     const datePaiement = document.getElementById('datePaiement').value;
+    const modePaiement = document.getElementById('modePaiement').value;
     const statut = document.getElementById('statut').value;
     const notes = document.getElementById('notes').value;
 
-    if (!pret_id || !montant || !datePaiement || !statut) {
+    console.log('Valeurs du formulaire:', { pret_id, montant, datePaiement, modePaiement, statut, notes });
+
+    if (!pret_id || !montant || !datePaiement || !modePaiement || !statut) {
         console.error('Champs requis manquants');
         return;
     }
 
     try {
+        const dataToSend = {
+            pret_id: parseInt(pret_id),
+            montant,
+            datePaiement,
+            modePaiement,
+            statut,
+            notes
+        };
+        
+        console.log('Données envoyées au serveur:', dataToSend);
+        
         const response = await fetch('http://localhost:3000/addPaiement', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                pret_id: parseInt(pret_id),
-                montant,
-                datePaiement,
-                statut,
-                notes
-            })
+            body: JSON.stringify(dataToSend)
         });
 
         if (!response.ok) throw new Error('Erreur lors de l\'ajout du paiement');

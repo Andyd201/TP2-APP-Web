@@ -63,27 +63,25 @@
                 <form id="formPret">
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column">
-                            <label class="label">Client</label>
+                            <label class="label">Client *</label>
                             <div class="control">
-                                <div class="select client-space is-fullwidth"><!-- is-fullwidth pour que le select prenne toute la largeur disponible -->
-                                    <select id="nomClient" required>
-                                        <option value="">Sélectionner un client</option>
-                                        <!-- Les clients seront chargés via JavaScript -->
-                                    </select>
-                                </div>
+                                <select id="nomClient" required>
+                                    <option value="">-- Sélectionner un client --</option>
+                                    <!-- Les clients seront chargés via JavaScript -->
+                                </select>
                             </div>
                         </div>
                     </div>
                     
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
-                            <label class="label">Montant</label> <!-- label pour le champ montant -->
+                            <label class="label">Montant *</label> <!-- label pour le champ montant -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ montant -->
                                 <input id="montantPret" class="input" type="number" step="0.01" placeholder="Montant du prêt" required> <!-- input de type number pour le montant du prêt -->
                             </div>
                         </div>
                         <div class="field column is-half is-6"> <!-- création d'une colonne qui prend la moitié de la largeur -->
-                            <label class="label">Taux Annuel (%)</label> <!-- label pour le champ taux annuel -->
+                            <label class="label">Taux Annuel (%) *</label> <!-- label pour le champ taux annuel -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ taux annuel -->
                                 <input id="tauxInteret" class="input" type="number" step="0.01" placeholder="Taux annuel" required> <!-- input de type number pour le taux annuel -->
                             </div>
@@ -91,14 +89,14 @@
                     </div>
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column is-half is-6">
-                            <label class="label">Durée (mois)</label> <!-- label pour le champ durée -->
+                            <label class="label">Durée (mois) *</label> <!-- label pour le champ durée -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ durée -->
                                 <input id="dureeMois" class="input" type="number" placeholder="Durée en mois" required> <!-- input de type number pour la durée -->
                             </div>
                         </div>
 
                         <div class="field column is-half is-6">
-                            <label class="label">Date de Début</label> <!-- label pour le champ date de début -->
+                            <label class="label">Date de Début *</label> <!-- label pour le champ date de début -->
                             <div class="control"> <!-- conteneur de contrôle pour le champ date de début -->
                                 <input id="dateDebut" class="input" type="date" required> <!-- input de type date pour la date de début -->
                             </div>
@@ -107,8 +105,8 @@
 
                     <div class="columns"> <!-- utilisation de la classe columns pour créer une grille -->
                         <div class="field column">
-                            <div class="control is-flex is-justify-content-center"> <!-- centrage du bouton -->
-                                <button class="button is-link" type="submit">Soumettre</button>
+                            <div class="control is-flex is-left"> <!-- centrage du bouton -->
+                                <button class="form-pret-button " type="submit">Soumettre</button>
                             </div>
                         </div>
                     </div>
@@ -136,27 +134,31 @@
             </div>
 
             <!-- Tableau des prêts -->
-            <table class="table is-fullwidth" id="pretsTable"> <!-- is-fullwidth pour que le tableau prenne toute la largeur disponible -->
-                <thead>
-                    <tr>
-                        <th>Client</th>
-                        <th>Montant</th>
-                        <th>Taux Annuel (%)</th>
-                        <th>Durée (mois)</th>
-                        <th>Date de Début</th>
-                        <th>Statut</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="pretsTableBody">
-                    <!-- Les lignes seront générées par JavaScript -->
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table class="table is-fullwidth" id="pretsTable"> <!-- is-fullwidth pour que le tableau prenne toute la largeur disponible -->
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Montant</th>
+                            <th>Taux (%)</th>
+                            <th>Durée</th>
+                            <th>Date Début</th>
+                            <th>Intérêts</th>
+                            <th>Solde</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pretsTableBody">
+                        <!-- Les lignes seront générées par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
             
             <!-- Pagination -->
             <nav class="pagination is-centered" role="navigation" aria-label="pagination"><!-- is-centered pour centrer la pagination -->
-                <a class="pagination-previous has-background-link" id="prevPage">Précédent</a> <!-- has-background-link pour le style du bouton -->
-                <a class="pagination-next has-background-link" id="nextPage">Suivant</a> <!-- has-background-link pour le style du bouton -->
+                <a class="pagination-previous" id="prevPage">Précédent</a> <!-- has-background-link pour le style du bouton -->
+                <a class="pagination-next" id="nextPage">Suivant</a> <!-- has-background-link pour le style du bouton -->
                 <ul class="pagination-list" id="paginationList">
                     <!-- Les numéros de page seront ajoutés ici via JavaScript -->
                 </ul>
