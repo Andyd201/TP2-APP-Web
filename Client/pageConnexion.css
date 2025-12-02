@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Text:wght@200..700&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    margin: 0 15px;
+}
+
+
+.form-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    display: none;
+}
+
+.form-box.active {
+    display: block;
+}
+
+h2{
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(147, 112,219);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: rgb(136, 93, 222);
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+p a {
+    color: rgb(147, 112,219);
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+/*=========================================== FORMULAIRE ===========================================*/
+

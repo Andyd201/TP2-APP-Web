@@ -6,6 +6,7 @@ const port = 3000
 const {db, createTable} = require('./DBclient')
 const {createTablePrets} = require('./DBprets')
 const {createTablePaiements} = require('./DBpaiements')
+const {createTableAdministrateurs} = require('./DBadministrateur')
 
 
 const app = express()
@@ -467,6 +468,52 @@ app.put('/updatePaiement/:id', async (req, res) => {
         res.status(200).json({ message: "Paiement modifié", updated: updated });
     } catch (err) {
         console.error("Erreur /updatePaiement/:id", err);
+        res.status(500).json({ error: "Erreur serveur.." });
+    }
+});
+
+// Connexion administration
+app.get('/admin', (req, res) =>{
+    res.sendFile(path.join(__dirname, "../Client", "PageConnexion.html"));
+});
+
+app.post('/login', async (req, res) => {
+    try {
+        const { email, motDePasse } = req.body;
+        if (!email || !motDePasse) {
+            return res.status(400).json({ error: "Champs 'email' et 'motDePasse' obligatoires" });
+        }
+        const admin = await db("Administrateurs").where({ email: email }).first();
+        if (!admin || admin.motDePasse !== motDePasse) {
+            return res.status(401).json({ error: "Email ou mot de passe incorrect" });
+        }
+        res.status(200).json({ message: "Connexion réussie" });
+    } catch (err) {
+        console.error("Erreur /login", err);
+        res.status(500).json({ error: "Erreur serveur.." });
+    }
+});
+
+app.post('/register', async (req, res) => {
+    try {
+        const { nom, email, motDePasse } = req.body;
+        if (!nom || !email || !motDePasse) {
+            return res.status(400).json({ error: "Champs 'nom', 'email' et 'motDePasse' obligatoires" });
+        }
+        const existingAdmin = await db("Administrateurs").where({ email: email }).first();
+        if (existingAdmin) {
+            return res.status(409).json({ error: "Un administrateur avec cet email existe déjà" });
+        }
+        const newAdmin = {
+            nom: nom,
+            email: email,
+            motDePasse: motDePasse
+        };
+        const [id] = await db("Administrateurs").insert(newAdmin);
+        newAdmin.id = id;
+        res.status(201).json(newAdmin);
+    } catch (err) {
+        console.error("Erreur /register", err);
         res.status(500).json({ error: "Erreur serveur.." });
     }
 });
