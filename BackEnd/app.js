@@ -21,12 +21,13 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(express.static(path.join(__dirname, '../Client')));
-
+// Route principale - doit être AVANT express.static pour éviter que index.html soit servi automatiquement
 app.get('/', (req, res) =>{
-    res.sendFile(path.join(__dirname, "../Client", "Clients.html"));
-
+    res.sendFile(path.join(__dirname, "../Client", "PageConnexion.html"));
 });
+
+// Servir les fichiers statiques APRÈS la route principale
+app.use(express.static(path.join(__dirname, '../Client')));
 
 app.post('/addClients', async (req, res)=>{
     try{
@@ -159,10 +160,10 @@ app.get('/clientsEnRetard', async (req, res) => {
 
 //========================================= ROUTES POUR LES PRÊTS =========================================//
 
-
-app.get('/', (req, res) =>{ // Route pour servir la page des prêts
-    res.sendFile(path.join(__dirname, "../Client", "prets.html")); // Envoie le fichier HTML des prêts
-});
+// Route commentée car elle entre en conflit avec la route principale '/' qui redirige vers PageConnexion.html
+// app.get('/', (req, res) =>{ // Route pour servir la page des prêts
+//     res.sendFile(path.join(__dirname, "../Client", "prets.html")); // Envoie le fichier HTML des prêts
+// });
 
 //-------------------------------------- récupération de tous les prêts avec informations client --------------------------------------//
 
