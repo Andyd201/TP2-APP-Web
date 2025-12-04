@@ -487,6 +487,14 @@ app.post('/login', async (req, res) => {
         if (!admin || admin.motDePasse !== motDePasse) {
             return res.status(401).json({ error: "Email ou mot de passe incorrect" });
         }
+        // met en place un cookie d'authentification simple
+        // produit un token basé sur l'ID de l'administrateur
+
+        try {
+            res.cookie('authAdmin', String(admin.id), { httpOnly: true, sameSite: 'lax' });
+        } catch (cookieErr) {
+            console.warn('Impossible de définir le cookie d\'authentification:', cookieErr);
+        }
         res.status(200).json({ message: "Connexion réussie" });
     } catch (err) {
         console.error("Erreur /login", err);
@@ -494,33 +502,43 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.post('/register', async (req, res) => {
+// Route pour déconnecter l'utilisateur (supprime le cookie d'authentification)
+app.post('/logout', (req, res) => {
+    try {
+        res.clearCookie('authAdmin');
+        return res.status(200).json({ message: 'Déconnecté' });
+    } catch (err) {
+        console.error('Erreur /logout', err);
+        return res.status(500).json({ error: 'Erreur serveur..' });
+    }
+});
+
+
+// creation de administrateurs
+
+app.put('/createAdmin', async (req, res) => {
     try {
         const { nom, email, motDePasse } = req.body;
         if (!nom || !email || !motDePasse) {
             return res.status(400).json({ error: "Champs 'nom', 'email' et 'motDePasse' obligatoires" });
         }
-        const existingAdmin = await db("Administrateurs").where({ email: email }).first();
-        if (existingAdmin) {
-            return res.status(409).json({ error: "Un administrateur avec cet email existe déjà" });
-        }
-        const newAdmin = {
+        const nouvelAdmin = {
             nom: nom,
             email: email,
             motDePasse: motDePasse
         };
-        const [id] = await db("Administrateurs").insert(newAdmin);
-        newAdmin.id = id;
-        res.status(201).json(newAdmin);
+        const [id] = await db("Administrateurs").insert(nouvelAdmin);
+        nouvelAdmin.id = id;
+        res.status(201).json(nouvelAdmin);
     } catch (err) {
-        console.error("Erreur /register", err);
+        console.error("Erreur /createAdmin", err);
         res.status(500).json({ error: "Erreur serveur.." });
     }
 });
 
 //==================================== INITIALISATION DU SERVEUR ====================================//
 
-createTable(), createTablePrets(), createTablePaiements() // appelle les fonctions de création des tables
+createTable(), createTablePrets(), createTablePaiements(), createTableAdministrateurs() // appelle les fonctions de création des tables
 .then(()=>{ // si tout se passe bien, démarre le serveur
 
    app.listen(3000, ()=>{ // écoute sur le port 3000

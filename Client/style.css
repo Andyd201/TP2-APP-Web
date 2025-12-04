@@ -167,6 +167,42 @@
     font-size: 0.9em; /* Taille du texte */
 }
 
+/* Pastille de déconnexion */
+.pastille-deconnexion {
+    display: flex; /* Utilisation de flexbox */
+    align-items: center; /* Alignement vertical */
+    gap: 1em; /* Espacement entre les éléments */
+    background-color: rgb(245, 245, 245); /* Couleur de fond */
+    padding: 0.3em 1em; /* Espacement interne */
+    border-radius: 2em; /* Bordure arrondie */
+    font-weight: 600; /* Poids de la police */
+    cursor: pointer; /* Curseur pointeur */
+    transition: transform 0.5s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Transition pour l'animation */
+    margin-top: 1em; /* Marge en haut (moins que rafraîchissement) */
+    border: 2px solid rgb(220, 53, 69); /* Bordure rouge */
+    font-size: 0.95em;
+    color: rgb(220, 53, 69); /* Texte rouge */
+}
+
+/* Effet au survol de la pastille déconnexion */
+.pastille-deconnexion:hover {
+    background-color: rgb(220, 53, 69); /* Fond rouge au survol */
+    color: white; /* Texte blanc */
+    border-color: rgb(220, 53, 69);
+    transform: translateY(-3px); /* Légère élévation au survol */
+}
+
+/* Icône dans la pastille déconnexion au survol */
+.pastille-deconnexion:hover .arrow-icon {
+    color: white; /* Icône blanche au survol */
+}
+
+/* Contenu textuel de la pastille déconnexion */
+.pastille-deconnexion-contenu {
+    display: flex; /* Utilisation de flexbox */
+    align-items: baseline; /* Alignement sur la ligne de base */
+    gap: 0.4em; /* Espacement entre les éléments */
+}
 
 
 /*=========================================== RESPONSIVE DESIGN (ADAPTATION À TOUS LES ÉCRANS) ===========================================*/
